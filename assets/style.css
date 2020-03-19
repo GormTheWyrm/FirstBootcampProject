@@ -1,5 +1,8 @@
 .testbox{
     color: blue;
+    border: solid;
+    margin: 12px;
+    padding: 12px;
 }
 body{
     /* color: red; */
