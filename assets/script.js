@@ -8,7 +8,6 @@ const localTimeEl
 const globeEL
 const worldTimeEl
 const locationImageEl
-var locationEl
 
 //Making sure the JS loads after the page loads
 $(window).load();
@@ -32,3 +31,12 @@ $('#load').on('click', function(){
         
     }); 
 });
+
+
+//get user location from form....need the class name of input box
+
+function onClick(event) {
+    var locationEl = $('input#location-div').val();
+    //check to see how the location input is working
+    console.log(locationEl);
+}
