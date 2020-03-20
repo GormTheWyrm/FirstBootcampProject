@@ -30,12 +30,19 @@
 <body>
 
 
-    <div class="testbox">
-        Background
-        <div class="pure-u-5-12 testbox">Globe container</div>
-        <div class="pure-u-1-2 testbox">contains right side
-            <div id="current-location" class="testbox">Input Current location div</div>
-            <div class="testbox"> location...div</div>
+    <div class="testbox background">
+        (.Background) div
+        <div id="globe-div" class="pure-u-5-12 testbox">Globe container (#globe-div)</div>
+        <div id="right-div" class="pure-u-1-2 testbox">contains right side (#right-div)
+            <div id="location-div" class="testbox">
+                <h3>(#location-div); user should type location here</h3>
+                <h3>(#location-span) is below this temporary header</h3>
+                <span id=location-span></span>
+            
+                <div id="returned-img" class="testbox"> image goes here</div>
+
+            </div>
+            
             <div class="testbox">Image based on location div</div>
         </div>
         <div class="testbox"> holds text at bottom</div>
