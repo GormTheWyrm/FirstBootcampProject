@@ -22,7 +22,7 @@ $('#save').on('click', function(){
         
     });   
 });
-
+//loading user input from localStorage
 $('#load').on('click', function(){
     $('input[type="text"]').each(function(){    
         var id = $(this).attr('id');
