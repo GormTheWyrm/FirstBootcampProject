@@ -11,6 +11,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- figure out responsive part here -->
+<!--[if lte IE 8]>
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/grids-responsive-old-ie-min.css">
+<![endif]-->
+<!--[if gt IE 8]><!-->
+    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/grids-responsive-min.css">
+<!--<![endif]-->
     
     <!-- our css -->
     <link rel="stylesheet" href="assets/style.css">
@@ -26,8 +32,8 @@
 
     <div class="testbox">
         Background
-        <div class="pure-u-2-5 testbox">Globe container</div>
-        <div class="pure-u-1-5 testbox">contains right side
+        <div class="pure-u-5-12 testbox">Globe container</div>
+        <div class="pure-u-1-2 testbox">contains right side
             <div id="current-location" class="testbox">Input Current location div</div>
             <div class="testbox"> location...div</div>
             <div class="testbox">Image based on location div</div>
