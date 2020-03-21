@@ -19,7 +19,26 @@
     <!--<![endif]-->
 
     <!-- our css -->
+    <script src="http://www.webglearth.com/v2/api.js"></script>
     <link rel="stylesheet" href="assets/style.css">
+
+
+
+
+
+    <script>
+        function initialize() {
+          var options = {atmosphere: false, center: [37.540726,-77.436050], zoom: 5};
+          var earth = new WE.map('earth_div', options);
+          WE.tileLayer('http://tileserver.maptiler.com/nasa/{z}/{x}/{y}.jpg', {
+            minZoom: 0,
+            maxZoom: 5,
+            attribution: 'NASA'
+          }).addTo(earth);
+        }
+      </script>
+
+
 </head>
 
 <!-- helpful link
@@ -28,7 +47,7 @@
     pure-u-   = columns; 1-4 is 1/4th screen, 1-3 = 1/3 screen
 -->
 
-<body>
+<body onload="initialize()">
 
 
     <div class="testbox background">
@@ -42,7 +61,12 @@
             
         </div>
 
-        <div id="globe-div" class="pure-u-5-12 testbox">Globe container (#globe-div)</div>
+        <!-- container for the globe -->
+        <div id="globe-div" class="pure-u-5-12 testbox">Globe container (#globe-div)
+            <div id="earth_div"></div>
+        </div>
+
+
         <div id="right-div" class="pure-u-1-2 testbox">contains right side (#right-div)
             <div id="location-div" class="testbox">
                 <h3 contenteditable="true">("#location-div"); div that holds the text for the current location details
