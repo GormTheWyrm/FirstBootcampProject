@@ -12,6 +12,7 @@ const globeEL
 const worldTimeEl
 const locationImageEl
 const initLocationEl
+<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
 <script src="http://www.webglearth.com/v2/api.js"></script>
 //Making sure the JS loads after the page loads...don't know if this is needed
 $(window).load();
@@ -46,6 +47,10 @@ function initializeGlobe() {
       maxZoom: 5,
       attribution: 'NASA'
     }).addTo(earth);
+  }
+
+  function userInputSearch() {
+
   }
 //CAN IGNORE EVERYTHING COMMENTED OUT FOR NOW 
 
