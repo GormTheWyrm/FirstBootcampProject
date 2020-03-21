@@ -84,7 +84,16 @@
 //     console.log(locationEl);
 // }
 
-
+function initialize() {
+  var options = { atmosphere: false, center: [37.540726, -77.436050], zoom: 5 };
+  var earth = new WE.map('earth_div', options);
+    WE.tileLayer('http://tileserver.maptiler.com/nasa/{z}/{x}/{y}.jpg', {
+      minZoom: 0,
+      maxZoom: 5,
+      attribution: 'NASA'
+    }).addTo(earth);
+}
+initialize()
 
 $("#input-button").on("click", function(){
 var geoCodeAPIkey = "356c83d937c04b978709b023ccb3530f";
