@@ -1,9 +1,12 @@
 .testbox{
-    color: lime;
+    color: red;
     border: solid;
     margin: 2px;
     padding: 2px;
 }
 body{
+    background-color: lightblue;
+}
+#globe-div{
     background-color: black;
 }
