@@ -23,23 +23,6 @@
     <script src="http://www.webglearth.com/v2/api.js"></script>
     <link rel="stylesheet" href="assets/style.css">
 
-
-
-
-
-    <script>
-        function initialize() {
-            var options = { atmosphere: false, center: [37.540726, -77.436050], zoom: 5 };
-            var earth = new WE.map('earth_div', options);
-            WE.tileLayer('http://tileserver.maptiler.com/nasa/{z}/{x}/{y}.jpg', {
-                minZoom: 0,
-                maxZoom: 5,
-                attribution: 'NASA'
-            }).addTo(earth);
-        }
-    </script>
-
-
 </head>
 
 <!-- helpful link
@@ -48,7 +31,7 @@
     pure-u-   = columns; 1-4 is 1/4th screen, 1-3 = 1/3 screen
 -->
 
-<body onload="initialize()">
+<bod">
 
     <!-- background for the main page -->
     <div class="testbox background">
@@ -59,7 +42,7 @@
 
         <!-- container for the globe -->
         <form class="pure-form">
-            <input type="text" class="pure-input-rounded">
+            <input id="locationInput" type="text" class="pure-input-rounded">
             <button id="input-button" type="button" class="pure-button">Search</button>
         </form>
 
@@ -86,24 +69,18 @@
 
             <!-- <div class="testbox">Image based on location div</div> -->
         </div>
-        <div id="bottom-div" class="testbox pure-g"> 
+        <div id="bottom-div" class="testbox pure-g">
             <div class="pure-u-5-5 blankbox"> holds pinned locations </div> <!-- adds whitespace... temp -->
             <div id="city1" class="pure-u-1-5 pinned-div"> (".pinned-div" city here (#city1)</div>
             <div id="city2" class="pure-u-1-5 pinned-div"> (".pinned-div" city here (#city2)</div>
             <div id="city3" class="pure-u-1-5 pinned-div"> (".pinned-div" city here (#city3)</div>
             <div id="city4" class="pure-u-1-5 pinned-div"> (".pinned-div" city here (#city4)</div>
             <div id="city5" class="pure-u-1-5 pinned-div"> (".pinned-div" city here (#city5)</div>
-           
         </div>
 
 
     </div>
-
-
-
-
-
-
+    <script src=https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js></script>
     <script src="assets/script.js"></script>
 </body>
 
