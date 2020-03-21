@@ -20,4 +20,12 @@ how do we want user input?
     -city name
 
 
+
+elevator pitch; 1 minute description
+concept; write a user story and motivation for development
+process- tech used. how were roles assigned and broken down?
+    list challenges and successes
+demo the app
+directions for future development
+links to deployed app and github repo
     
