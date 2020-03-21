@@ -4,9 +4,6 @@
 //then we need to pull up an image based on the location
 //then we have a few cities listed on the bottom where if they click them the
 //city pops up in a marker and the globe goes to it.
-
-
-<<<<<<< HEAD
 //this is the globe script. Copied and pasted from WEBGLEARTH.
 function initialize() {
   
@@ -36,36 +33,23 @@ function showPosition(position) {
     x.innerHTML = "Latitude: " + position.coords.latitude +
         "<br>Longitude: " + position.coords.longitude;
 }
-//initializing the function on page load
+//initializing the function on page loads
 getLocation();
 //this is the globe script. Copied and pasted from WEBGLEARTH. Not sure if any styling 
 //is needed here since it's in the index.html
 function initializeGlobe() {
     //not sure how to get the lat and long data from the first function into this function to init
     //the globe
-<<<<<<< HEAD
-    var options = { atmosphere: false, center: [position.coords.latitude, position.coords.longitude], zoom: 5 };
-=======
 
-    var options = {atmosphere: false, center: [position.coords.latitude, position.coords.longitude], zoom: 5 };
->>>>>>> 0a58e4a224c8162bca78024c0c45de66b76e0c28
+    var options = { atmosphere: false, center: [position.coords.latitude, position.coords.longitude], zoom: 5 };
+
     var earth = new WE.map('earth_div', options);
     WE.tileLayer('http://tileserver.maptiler.com/nasa/{z}/{x}/{y}.jpg', {
         minZoom: 0,
         maxZoom: 5,
         attribution: 'NASA'
     }).addTo(earth);
-<<<<<<< HEAD
-=======
-
   }
-
->>>>>>> 0a58e4a224c8162bca78024c0c45de66b76e0c28
-
-    
-
-
-
 
 // //saving user input to localStorage
 // $('#save').on('click', function(){
@@ -75,12 +59,8 @@ function initializeGlobe() {
 //         var value = $(this).val();
 //        localStorage.setItem(id, value);
 
-<<<<<<< HEAD
 //     });   
-=======
-//     });
->>>>>>> 0a58e4a224c8162bca78024c0c45de66b76e0c28
-// });
+
 // //loading user input from localStorage
 // $('#load').on('click', function(){
 //     $('input[type="text"]').each(function(){
@@ -89,11 +69,7 @@ function initializeGlobe() {
 
 //         $(this).val(value);
 
-<<<<<<< HEAD
-//     }); 
-=======
 //     });
->>>>>>> 0a58e4a224c8162bca78024c0c45de66b76e0c28
 // });
 
 
@@ -105,8 +81,6 @@ function initializeGlobe() {
 //     console.log(locationEl);
 // }
 
-=======
->>>>>>> 95095b1e821ac56a111ecc6a1fc937bc0162d070
 function initialize() {
   var options = { atmosphere: false, center: [37.540726, -77.436050], zoom: 5 };
   var earth = new WE.map('earth_div', options);
