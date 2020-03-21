@@ -22,24 +22,6 @@
     <!-- our css -->
     <script src="http://www.webglearth.com/v2/api.js"></script>
     <link rel="stylesheet" href="assets/style.css">
-
-
-
-
-
-    <script>
-        function initialize() {
-            var options = { atmosphere: false, center: [37.540726, -77.436050], zoom: 5 };
-            var earth = new WE.map('earth_div', options);
-            WE.tileLayer('http://tileserver.maptiler.com/nasa/{z}/{x}/{y}.jpg', {
-                minZoom: 0,
-                maxZoom: 5,
-                attribution: 'NASA'
-            }).addTo(earth);
-        }
-    </script>
-
-
 </head>
 
 <!-- helpful link
