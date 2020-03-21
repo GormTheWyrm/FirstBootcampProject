@@ -22,6 +22,7 @@
     <!-- our css -->
     <script src="http://www.webglearth.com/v2/api.js"></script>
     <link rel="stylesheet" href="assets/style.css">
+
 </head>
 
 <!-- helpful link
@@ -30,7 +31,7 @@
     pure-u-   = columns; 1-4 is 1/4th screen, 1-3 = 1/3 screen
 -->
 
-<body onload="initialize()">
+<bod">
 
     <!-- background for the main page -->
     <div class="testbox background">
@@ -41,17 +42,17 @@
 
         <!-- container for the globe -->
         <form class="pure-form">
-            <input type="text" class="pure-input-rounded">
+            <input id="locationInput" type="text" class="pure-input-rounded">
             <button id="input-button" type="button" class="pure-button">Search</button>
         </form>
 
-        <div id="globe-div" class="pure-u-5-12 testbox">Globe container (#globe-div) holds the globe,
+        <div id="globe-div" class="pure-u-16-24 testbox">Globe container (#globe-div) holds the globe,
             ("#earth_div) is the globe object
             <div id="earth_div"></div>
 
         </div>
 
-        <!-- holds right side -->
+        <!-- holds right side ;         NEED TO SET HEIGHT TO LEFT-DIV-->
         <div id="right-div" class="pure-u-7-24 testbox">contains right side (#right-div)
             <div id="location-div" class="testbox">
                 <h3>("#location-div"); div that holds the text for the current location details</h3>
@@ -66,17 +67,20 @@
 
             </div>
 
-            <div class="testbox">Image based on location div</div>
+            <!-- <div class="testbox">Image based on location div</div> -->
         </div>
-        <div class="testbox pure-u-23-24"> holds text at bottom</div>
+        <div id="bottom-div" class="testbox pure-g">
+            <div class="pure-u-5-5 blankbox"> holds pinned locations </div> <!-- adds whitespace... temp -->
+            <div id="city1" class="pure-u-1-5 pinned-div"> (".pinned-div" city here (#city1)</div>
+            <div id="city2" class="pure-u-1-5 pinned-div"> (".pinned-div" city here (#city2)</div>
+            <div id="city3" class="pure-u-1-5 pinned-div"> (".pinned-div" city here (#city3)</div>
+            <div id="city4" class="pure-u-1-5 pinned-div"> (".pinned-div" city here (#city4)</div>
+            <div id="city5" class="pure-u-1-5 pinned-div"> (".pinned-div" city here (#city5)</div>
+        </div>
+
 
     </div>
-
-
-
-
-
-
+    <script src=https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js></script>
     <script src="assets/script.js"></script>
 </body>
 

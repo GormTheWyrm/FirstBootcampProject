@@ -10,3 +10,11 @@ body{
 #globe-div{
     background-color: black;
 }
+#location-div{
+    height: 70vh;
+    /* width: em,rem,ex; */
+}
+
+.blank-box{
+    height: 25px;
+}
