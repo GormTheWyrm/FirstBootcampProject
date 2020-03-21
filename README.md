@@ -1,9 +1,11 @@
 # FirstBootcampProject
-Needs a name change
+
+
+This app shows the users location
 
 
 
-HAve we finalized the APIs?
+Have we finalized the APIs?
 how do we want user input?
     buttons are easiest
     what does user need to type?

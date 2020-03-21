@@ -47,12 +47,10 @@ function initializeGlobe() {
         maxZoom: 5,
         attribution: 'NASA'
     }).addTo(earth);
-}
-//CAN IGNORE EVERYTHING COMMENTED OUT FOR NOW
 
-// //
+    
 
-////////////////////////////////////////////////////////////
+
 
 
 // //saving user input to localStorage
