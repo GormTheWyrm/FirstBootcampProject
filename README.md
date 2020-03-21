@@ -16,3 +16,6 @@ how do we want user input?
 4. user can search for a location
     -long,lat
     -city name
+
+
+    

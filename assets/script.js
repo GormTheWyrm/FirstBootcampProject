@@ -12,25 +12,26 @@ const globeEL
 const worldTimeEl
 const locationImageEl
 const initLocationEl
-<script src="http://www.webglearth.com/v2/api.js"></script>
+
+
 //Making sure the JS loads after the page loads...don't know if this is needed
 $(window).load();
 //calling to the element in the HTML
 var x = document.getElementById("location-div");
 //getting the location from the browser
 function getLocation() {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(showPosition);
-  } else { 
-    x.innerHTML = "Geolocation is not supported by this browser.";
-  }
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    } else {
+        x.innerHTML = "Geolocation is not supported by this browser.";
+    }
 }
 //this is not needed but was included in the copy and paste from W3 schools. figured it
 //would be good to use to test how we get the data from the browser location
 //into the globe function
 function showPosition(position) {
-  x.innerHTML = "Latitude: " + position.coords.latitude + 
-  "<br>Longitude: " + position.coords.longitude;
+    x.innerHTML = "Latitude: " + position.coords.latitude +
+        "<br>Longitude: " + position.coords.longitude;
 }
 //initializing the function on page load
 getLocation();
@@ -39,15 +40,15 @@ getLocation();
 function initializeGlobe() {
     //not sure how to get the lat and long data from the first function into this function to init
     //the globe
-    var options = {atmosphere: false, center: [position.coords.latitude, position.coords.longitude], zoom: 5 };
+    var options = { atmosphere: false, center: [position.coords.latitude, position.coords.longitude], zoom: 5 };
     var earth = new WE.map('earth_div', options);
     WE.tileLayer('http://tileserver.maptiler.com/nasa/{z}/{x}/{y}.jpg', {
-      minZoom: 0,
-      maxZoom: 5,
-      attribution: 'NASA'
+        minZoom: 0,
+        maxZoom: 5,
+        attribution: 'NASA'
     }).addTo(earth);
-  }
-//CAN IGNORE EVERYTHING COMMENTED OUT FOR NOW 
+}
+//CAN IGNORE EVERYTHING COMMENTED OUT FOR NOW
 
 // //
 
@@ -61,7 +62,7 @@ function initializeGlobe() {
 //         var id = $(this).attr('id');
 //         var value = $(this).val();
 //        localStorage.setItem(id, value);
-        
+
 //     });   
 // });
 // //loading user input from localStorage
@@ -69,9 +70,9 @@ function initializeGlobe() {
 //     $('input[type="text"]').each(function(){    
 //         var id = $(this).attr('id');
 //         var value = localStorage.getItem(id);
-        
+
 //         $(this).val(value);
-        
+
 //     }); 
 // });
 
