@@ -47,6 +47,8 @@ function initializeGlobe() {
       attribution: 'NASA'
     }).addTo(earth);
   }
+
+
 //CAN IGNORE EVERYTHING COMMENTED OUT FOR NOW 
 
 // //
