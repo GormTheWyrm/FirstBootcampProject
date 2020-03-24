@@ -5,36 +5,34 @@
 //then we have a few cities listed on the bottom where if they click them the
 //city pops up in a marker and the globe goes to it.
 
-
 function initialize() {
-    var options = {atmosphere: false, center: [position.coords.latitude, position.coords.longitude], zoom: 5 };
-    var earth = new WE.map('earth_div', options);
+  var options = { atmosphere: false, center: [37.540726, -77.436050], zoom: 5 };
+  var earth = new WE.map('earth_div', options);
     WE.tileLayer('http://tileserver.maptiler.com/nasa/{z}/{x}/{y}.jpg', {
       minZoom: 0,
       maxZoom: 5,
       attribution: 'NASA'
     }).addTo(earth);
-    
-    var marker = WE.marker([51.5, -0.09]).addTo(earth);
-        marker.bindPopup("<b>Hello world!</b><br>I am a popup.<br /><span style='font-size:10px;color:#999'>Tip: Another popup is hidden in Cairo..</span>", {maxWidth: 150, closeButton: true}).openPopup();
 
-        var marker2 = WE.marker([30.058056, 31.228889]).addTo(earth);
-        marker2.bindPopup("<b>Cairo</b><br>Yay, you found me!", {maxWidth: 120, closeButton: false});
+var marker = WE.marker([51.5, -0.09]).addTo(earth);
+marker.bindPopup("<b>Hello world!</b><br>I am a popup.<br /><span style='font-size:10px;color:#999'>Tip: Another popup is hidden in Cairo..</span>", {maxWidth: 150, closeButton: true}).openPopup();
 
-        var markerCustom = WE.marker([50, -9], '/img/logo-webglearth-white-100.png', 100, 24).addTo(earth);
+var marker2 = WE.marker([30.058056, 31.228889]).addTo(earth);
+marker2.bindPopup("<b>Cairo</b><br>Yay, you found me!", {maxWidth: 120, closeButton: false});
 
-        earth.setView([51.505, 0], 6);
+var markerCustom = WE.marker([50, -9], '/img/logo-webglearth-white-100.png', 100, 24).addTo(earth);
 
-                // Start a simple rotation animation
-        var before = null;
-        requestAnimationFrame(function animate(now) {
-            var c = earth.getPosition();
-            var elapsed = before? now - before: 0;
-            before = now;
-            earth.setCenter([c[0], c[1] + 0.1*(elapsed/30)]);
-            requestAnimationFrame(animate);
-        });
-      }
+earth.setView([51.505, 0], 6);
+
+var before = null;
+requestAnimationFrame(function animate(now) {
+    var c = earth.getPosition();
+    var elapsed = before? now - before: 0;
+    before = now;
+    earth.setCenter([c[0], c[1] + 0.1*(elapsed/30)]);
+    requestAnimationFrame(animate);
+  });
+};
 
 initialize()
 
