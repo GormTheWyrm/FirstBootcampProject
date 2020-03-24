@@ -7,19 +7,8 @@
 
 
 function initialize() {
-
-          // Start a simple rotation animation
-          var before = null;
-          requestAnimationFrame(function animate(now) {
-              var c = earth.getPosition();
-              var elapsed = before? now - before: 0;
-              before = now;
-              earth.setCenter([c[0], c[1] + 0.1*(elapsed/30)]);
-              requestAnimationFrame(animate);
-          });
-          
-  var options = { atmosphere: false, center: [37.540726, -77.436050], zoom: 5 };
-  var earth = new WE.map('earth_div', options);
+    var options = {atmosphere: false, center: [position.coords.latitude, position.coords.longitude], zoom: 5 };
+    var earth = new WE.map('earth_div', options);
     WE.tileLayer('http://tileserver.maptiler.com/nasa/{z}/{x}/{y}.jpg', {
       minZoom: 0,
       maxZoom: 5,
