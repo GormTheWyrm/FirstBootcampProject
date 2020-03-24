@@ -5,6 +5,8 @@
 //then we have a few cities listed on the bottom where if they click them the
 //city pops up in a marker and the globe goes to it.
 
+
+//initializing the globe
 function initialize() {
   var options = { atmosphere: false, center: [37.540726, -77.436050], zoom: 5 };
   var earth = new WE.map('earth_div', options);
@@ -13,6 +15,8 @@ function initialize() {
       maxZoom: 5,
       attribution: 'NASA'
     }).addTo(earth);
+
+//adding markers to the globe, just need to add the markers from a variable from the search
 
 var marker = WE.marker([51.5, -0.09]).addTo(earth);
 marker.bindPopup("<b>Hello world!</b><br>I am a popup.<br /><span style='font-size:10px;color:#999'>Tip: Another popup is hidden in Cairo..</span>", {maxWidth: 150, closeButton: true}).openPopup();
@@ -24,6 +28,7 @@ var markerCustom = WE.marker([50, -9], '/img/logo-webglearth-white-100.png', 100
 
 earth.setView([51.505, 0], 6);
 
+//adding rotation animation
 var before = null;
 requestAnimationFrame(function animate(now) {
     var c = earth.getPosition();
