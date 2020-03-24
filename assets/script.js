@@ -16,19 +16,7 @@ function initialize() {
       attribution: 'NASA'
     }).addTo(earth);
 
-//adding markers to the globe, just need to add the markers from a variable from the search
-
-var marker = WE.marker([51.5, -0.09]).addTo(earth);
-marker.bindPopup("<b>Hello world!</b><br>I am a popup.<br /><span style='font-size:10px;color:#999'>Tip: Another popup is hidden in Cairo..</span>", {maxWidth: 150, closeButton: true}).openPopup();
-
-var marker2 = WE.marker([30.058056, 31.228889]).addTo(earth);
-marker2.bindPopup("<b>Cairo</b><br>Yay, you found me!", {maxWidth: 120, closeButton: false});
-
-var markerCustom = WE.marker([50, -9], '/img/logo-webglearth-white-100.png', 100, 24).addTo(earth);
-
-earth.setView([51.505, 0], 6);
-
-//adding rotation animation
+  //adding rotation animation
 var before = null;
 requestAnimationFrame(function animate(now) {
     var c = earth.getPosition();
@@ -37,9 +25,23 @@ requestAnimationFrame(function animate(now) {
     earth.setCenter([c[0], c[1] + 0.1*(elapsed/30)]);
     requestAnimationFrame(animate);
   });
+  
+//adding markers to the globe, just need to add the markers from a variable from the search
+
+var marker = WE.marker([20, 30]).addTo(earth);
+marker.bindPopup("<b>Hello world!</b><br>I am a popup.<br /><span style='font-size:10px;color:#999'>Tip: Another popup is hidden in Cairo..</span>", {maxWidth: 150, closeButton: true}).openPopup();
+
+var marker2 = WE.marker([30.058056, 31.228889]).addTo(earth);
+marker2.bindPopup("<b>Cairo</b><br>Yay, you found me!", {maxWidth: 120, closeButton: false});
+
+var markerCustom = WE.marker([50, -9], '/img/logo-webglearth-white-100.png', 100, 24).addTo(earth);
+
+earth.setView([37.540726, -77.436050], 3.5);
+
+
 };
 
-initialize()
+
 
 $("#input-button").on("click", function(){
 var geoCodeAPIkey = "356c83d937c04b978709b023ccb3530f";
@@ -75,3 +77,5 @@ $.ajax({
 
   })
     })
+
+    initialize()
