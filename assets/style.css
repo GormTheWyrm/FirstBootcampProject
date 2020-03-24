@@ -18,3 +18,7 @@ body{
 .blank-box{
     height: 25px;
 }
+.background{
+min-height: 95vh;
+background-color: darkslategrey;
+}

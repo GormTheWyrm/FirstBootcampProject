@@ -32,7 +32,8 @@ $("#input-button").on("click", function () {
     var currentLng = response.results[0].geometry.lng
     var cityName = response.results[0].components.city
     var country = response.results[0].components.country
-
+    //link to first api
+    console.log(geoCodequeryURL);
     var timeZoneQueryURL = `http://api.timezonedb.com/v2.1/get-time-zone?key=${timeZoneAPIkey}&format=json&by=position&lat=${currentLat}&lng=${currentLng}`;
     $.ajax({
       url: timeZoneQueryURL,
@@ -47,6 +48,8 @@ $("#input-button").on("click", function () {
   <h2>Time Zone: ${timeZone} </h2>
   <p>GPS coordinates: ${currentLat}, ${currentLng} </p>
   `)
+  //link to 2nd api
+  console.log(timeZoneQueryURL);
     })
 
   })

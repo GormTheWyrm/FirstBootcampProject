@@ -28,4 +28,20 @@ process- tech used. how were roles assigned and broken down?
 demo the app
 directions for future development
 links to deployed app and github repo
+
+
+
+cities displayed;
+    somewhere in us
+    somewhere in germany
+
+    moscow
+    sydney
+    beijing
+    london
+    washington dc
+    los angelos
+    
+
+
     
