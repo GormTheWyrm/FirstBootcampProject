@@ -1,5 +1,5 @@
 .testbox {
-    color: lime;
+    color: white;
     border: solid;
     margin: 2px;
     padding: 2px;
@@ -7,10 +7,17 @@
 
 body {
     background-image: url(https://lh3.googleusercontent.com/proxy/RaORVIJ2-S86f0hVYrkc7rzWXxBX69uIsOJqhAX9ep2bA8KBnZ6VnbAtSAAtqxJ4AZxps-W9V0PoVA4JrWyUKxa41yey1PnX61s);
+    
+}
+
+#locationInput{
+background-color: transparent;
+
 }
 
 #globe-div {
-    color: #05119c
+    
+    
 }
 
 #location-div {
@@ -33,7 +40,8 @@ body {
     margin-bottom: 4px;
     margin-left: auto;
     margin-right: auto;
-    border: solid darkslategrey;
+    border: solid white;
+
 }
 
 #input-button {
