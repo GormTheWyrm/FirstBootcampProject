@@ -41,6 +41,12 @@ cities displayed;
     london
     washington dc
     los angelos
+
+    london
+    LA
+    beijing
+    moscow
+    sidney
     
 
 

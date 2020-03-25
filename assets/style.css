@@ -21,8 +21,7 @@ background-color: transparent;
 }
 
 #location-div {
-    height: 70vh;
-    /* width: em,rem,ex; */
+min-height: 225px;
 }
 
 .blank-box {
