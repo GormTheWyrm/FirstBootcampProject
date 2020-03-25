@@ -7,14 +7,13 @@
 body{
     /* background-color: lightblue; */
     
-background-image: image("assets/nasa1.jpg");
+background-image: url(https://images-assets.nasa.gov/image/0400530/0400530~thumb.jpg);
 }
 #globe-div{
     /* background-color: black; */
 }
 #location-div{
-    height: 70vh;
-    /* width: em,rem,ex; */
+min-height: auto;
 }
 
 .blank-box{
@@ -29,5 +28,5 @@ min-height: 95vh;
     margin-bottom: 4px;
     margin-left: auto;
     margin-right: auto;
-    border: solid darkslategrey;
+    /* border: solid darkslategrey; */
 }

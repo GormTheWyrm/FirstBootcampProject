@@ -11,7 +11,7 @@
         integrity="sha384-oAOxQR6DkCoMliIh8yFnu25d7Eq/PHS21PClpwjOTeU2jRSq11vu66rf90/cZr47" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- figure out responsive part here -->
+    <!-- Pure CSS' responsive code here; -->
     <!--[if lte IE 8]>
     <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/grids-responsive-old-ie-min.css">
 <![endif]-->
@@ -34,61 +34,61 @@
 <body>
 
     <!-- background for the main page -->
-    <div class="testbox background">
+    <div class="testbox background pure-g">
         (.Background) div
 
-        <!-- <div class="testbox pure-g">
-        </div> -->
-
-        <!-- container for the globe -->
-        <form class="pure-form">
-            <input id="locationInput" type="text" class="pure-input-rounded">
-            <button id="input-button" type="button" class="pure-button">Search</button>
-        </form>
-
-        <div id="globe-div" class="pure-u-16-24 testbox">Globe container (#globe-div) holds the globe,
-            ("#earth_div) is the globe object
-            <div id="earth_div"></div>
-
-        </div>
-
-        <!-- holds right side ;         NEED TO SET HEIGHT TO LEFT-DIV-->
-        <div id="right-div" class="pure-u-7-24 testbox">contains right side (#right-div)
-            <div id="location-div" class="testbox">
-                <h3>("#location-div"); div that holds the text for the current location details</h3>
-                <h1 id="current-city-name"> ("#current-city-name") h1 that holds city name</h1>
-
-                <h3>(#location-span) this can hold info on current time, etc...</h3>
+        <div class="testbox pure-u-1-2">
 
 
-                <!-- <span id=location-span></span> -->
+            <!-- container for the globe -->
+            <form class="pure-form">
+                <input id="locationInput" type="text" class="pure-input-rounded">
+                <button id="input-button" type="button" class="pure-button">Search</button>
+            </form>
 
-                <!-- <div id="returned-img" class="testbox"> image goes here</div> -->
+            <div id="globe-div" class="pure-u-16-24 testbox">Globe container (#globe-div) holds the globe,
+                ("#earth_div) is the globe object
+                <div id="earth_div"></div>
 
             </div>
+            </div>
+            
+            <!-- holds right side ;         NEED TO SET HEIGHT TO LEFT-DIV-->
+            <div id="right-div" class="pure-u-7-24 testbox">contains right side (#right-div)
+                <div id="location-div" class="testbox">
+                    <h3>("#location-div"); div that holds the text for the current location details</h3>
+                    <h1 id="current-city-name"> ("#current-city-name") h1 that holds city name</h1>
 
-            <!-- <div class="testbox">Image based on location div</div> -->
-        </div>
-        <div id="bottom-div" class="testbox pure-g">
-            <div class="pure-u-5-5 blankbox"> holds pinned locations </div> <!-- adds whitespace... temp -->
-            <div id="city1" class="pure-u-1-5 pinned-div"> (".pinned-div" city here (#city1)</div>
-            <div id="city2" class="pure-u-1-5 pinned-div"> (".pinned-div" city here (#city2)</div>
-            <div id="city3" class="pure-u-1-5 pinned-div"> (".pinned-div" city here (#city3)</div>
-            <div id="city4" class="pure-u-1-5 pinned-div"> (".pinned-div" city here (#city4)</div>
-            <div id="city5" class="pure-u-1-5 pinned-div"> (".pinned-div" city here (#city5)</div>
-        </div>
+                    <h3>(#location-span) this can hold info on current time, etc...</h3>
 
-        <div class="pure-g">
-            <div class="pure-u-1-1  footer">
-                <!-- <div class="footer" -->
+                    <!-- <span id=location-span></span> -->
+
+                    <!-- <div id="returned-img" class="testbox"> image goes here</div> -->
+
+                </div>
+
+                <!-- <div class="testbox">Image based on location div</div> -->
+            </div>
+            <div id="bottom-div" class="testbox pure-g">
+                <div class="pure-u-5-5 blankbox"> holds pinned locations </div> <!-- adds whitespace... temp -->
+                <div id="city1" class="pure-u-1-5 pinned-div"> (".pinned-div" city here (#city1)</div>
+                <div id="city2" class="pure-u-1-5 pinned-div"> (".pinned-div" city here (#city2)</div>
+                <div id="city3" class="pure-u-1-5 pinned-div"> (".pinned-div" city here (#city3)</div>
+                <div id="city4" class="pure-u-1-5 pinned-div"> (".pinned-div" city here (#city4)</div>
+                <div id="city5" class="pure-u-1-5 pinned-div"> (".pinned-div" city here (#city5)</div>
+            </div>
+
+            <div class="pure-g">
+                <div class="pure-u-1-1  footer">
+                    <!-- <div class="footer" -->
                     <p>Sources:
                         <br> Background Photo from NASA
                     </p>
-                <!-- </div> -->
+                    <!-- </div> -->
+                </div>
             </div>
-        </div>
-        <script src=https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js></script>
-        <script src="assets/script.js"></script>
+            <script src=https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js></script>
+            <script src="assets/script.js"></script>
 </body>
 
 </html>
