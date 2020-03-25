@@ -5,10 +5,12 @@
     padding: 2px;
 }
 body{
-    background-color: lightblue;
+    /* background-color: lightblue; */
+    
+background-image: image("assets/nasa1.jpg");
 }
 #globe-div{
-    background-color: black;
+    /* background-color: black; */
 }
 #location-div{
     height: 70vh;
@@ -17,4 +19,15 @@ body{
 
 .blank-box{
     height: 25px;
+}
+.background{
+min-height: 95vh;
+/* background-color: darkslategrey; */
+}
+.footer{
+    margin-top: 25px;
+    margin-bottom: 4px;
+    margin-left: auto;
+    margin-right: auto;
+    border: solid darkslategrey;
 }
