@@ -5,51 +5,7 @@
 //then we have a few cities listed on the bottom where if they click them the
 //city pops up in a marker and the globe goes to it.
 
-var cityInfoArray = [];
-
-function getCityInfo() {
-  var majorCities = [
-    "London, United Kingdom",
-    "Beijing, China",
-    "Sydney, Australia",
-    "Moscow, Russia",
-    "Los Angeles, CA, United States of America",
-    "richmond, VA"
-  ];
-  majorCities.forEach(function(city) {
-    var geoCodeAPIkey = "700f8122007345be85cf878d02de94cd";
-    var geoCodequeryURL = `https://api.opencagedata.com/geocode/v1/json?q=${city}&key=${geoCodeAPIkey}`;
-    $.ajax({
-      url: geoCodequeryURL,
-      method: "GET"
-    }).then(function(response) {
-      var cityInfoObject = {
-        cityName: response.results[0].components.city,
-        cityCountry: response.results[0].components.country,
-        cityLat: response.results[0].geometry.lat,
-        cityLng: response.results[0].geometry.lng
-      };
-      cityArrayProxy.push(cityInfoObject);
-    });
-  });
-}
-getCityInfo();
-
-var changeHandler = {
-  set: function(target,property,value){
-    console.log("array changed");
-    console.log(cityInfoArray);
-    if (cityInfoArray.length<6) {
-      return (target[property]=value)
-    }
-    else{
-      console.log("done")
-      initialize()
-      return (target[property] = value);
-    }
-  }}
-
-var cityArrayProxy = new Proxy(cityInfoArray, changeHandler)
+//initializing the globe
 
 function initialize() {
   var options = { atmosphere: false, center: [37.540726, -77.43605], zoom: 5 };
@@ -59,51 +15,90 @@ function initialize() {
     maxZoom: 5,
     attribution: "NASA"
   }).addTo(earth);
-  // var marker = WE.marker([
-  //   cityInfoArray[0].cityLat,
-  //   cityInfoArray[0].cityLng
-  // ]).addTo(earth);
-  // marker
-  //   .bindPopup(
-  //     "<b>Hello world!</b><br>I am a popup.<br /><span style='font-size:10px;color:#999'>Tip: Another popup is hidden in Cairo..</span>",
-  //     { maxWidth: 150, closeButton: true }
-  //   )
-  //   .openPopup();
 
-  for (var i = 0; i < cityInfoArray.length; i++) {
-    (function() {
-      var marker = WE.marker([
-        cityInfoArray[i].cityLat,
-        cityInfoArray[i].cityLng
-        ]).addTo(earth);
-      marker
-        .bindPopup(
-        "<b>Hello world!</b><br>I am a popup.<br /><span style='font-size:10px;color:#999'>Tip: Another popup is hidden in Cairo..</span>",
-        { maxWidth: 150, closeButton: true }
-        ).openPopup();
-  })
-}}
+  //adding rotation animation
+  var before = null;
+  requestAnimationFrame(function animate(now) {
+    var c = earth.getPosition();
+    var elapsed = before ? now - before : 0;
+    before = now;
+    //elapsed/*number* changes rotation speed
+    earth.setCenter([c[0], c[1] + 0.1 * (elapsed / 45)]);
+    requestAnimationFrame(animate);
+  });
+
+  //adding markers to the globe, just need to add the markers from a variable from the search
+
+  var markerSydney = WE.marker([-33.865143, 151.2]).addTo(earth);
+  markerSydney
+    .bindPopup(
+      "<b>Hello world!</b><br>I am a popup.<br /><span style='font-size:10px;color:#999'>Tip: Another popup is hidden in Cairo..</span>",
+      { maxWidth: 150, closeButton: true }
+    )
+    .openPopup();
+
+  var markerLondon = WE.marker([55.006763, -7.31]).addTo(earth);
+  markerLondon.bindPopup("<b>Cairo</b><br>Yay, you found me!", {
+    maxWidth: 120,
+    closeButton: false
+  });
+  var markerMoscow = WE.marker([55.751, 37.6]).addTo(earth);
+  markerMoscow.bindPopup("<b>Cairo</b><br>Yay, you found me!", {
+    maxWidth: 120,
+    closeButton: false
+  });
+  var markerBeijing = WE.marker([39.9, 116.3]).addTo(earth);
+  markerBeijing.bindPopup("<b>Cairo</b><br>Yay, you found me!", {
+    maxWidth: 120,
+    closeButton: false
+  });
+  var markerLosAngeles = WE.marker([34, -118]).addTo(earth);
+  markerLosAngeles.bindPopup("<b>Cairo</b><br>Yay, you found me!", {
+    maxWidth: 120,
+    closeButton: false
+  });
 
 
-// function addMarkers() {
-//   for (var i = 0; i < cityInfoArray.length; i++) {
-//     (function(city) {
-//       console.log(city[i]);
-//       var markerLat = cityInfoArray[i].cityLat;
-//       var markerLng = cityInfoArray[i].cityLng;
-//       var marker = WE.marker([markerLat, markerLng]).addTo(map);
-//       marker
-//         .bindPopup(
-//           "<b>Hello world!</b><br>I am a popup.<br /><span style='font-size:10px;color:#999'>Tip: Another popup is hidden in Cairo..</span>",
-//           { maxWidth: 150, closeButton: true }
-//         )
-//         .openPopup();
-//     });
-//   }
-// }
+  $("#input-button").on("click", function() {
+      var geoCodeAPIkey = "356c83d937c04b978709b023ccb3530f";
+      var timeZoneAPIkey = "3XNBGBH1XHV0";
+      var locationInput = $("#locationInput").val();
+      var geoCodequeryURL = `https://api.opencagedata.com/geocode/v1/json?q=${locationInput}&key=${geoCodeAPIkey}`;
 
+      $.ajax({
+        url: geoCodequeryURL,
+        method: "GET"
+      }).then(function(response) {
+        console.log(response);
+        var currentLat = response.results[0].geometry.lat;
+        var currentLng = response.results[0].geometry.lng;
+        var cityName = response.results[0].components.city;
+    //need to add flyTo function
 
-// initialize();
+  var searchMarker = WE.marker([currentLat, currentLng]).addTo(earth);
+  searchMarker.bindPopup("You typed in" + cityName, {
+    maxWidth: 120,
+    closeButton: false
+  });
+  function flyto() {
+    map.fitBounds([[currentLat,currentLat+100],[currentLng,currentLng+100]]);
+    map.panInsideBounds([[currentLat,currentLat+100],[currentLng,currentLng+100]],
+    {heading: 90, tilt: 25, duration: 1});
+  };
+
+});
+});
+  var markerCustom = WE.marker(
+    [50, -9],
+    "/img/logo-webglearth-white-100.png",
+    100,
+    24
+  ).addTo(earth);
+  //sets where the earth starts out....right now it's richmond. 3.5 is the amount of zoom
+  earth.setView([37.540726, -77.43605], 3.5);
+}
+
+initialize();
 
 $("#input-button").on("click", function() {
   var geoCodeAPIkey = "356c83d937c04b978709b023ccb3530f";
@@ -129,11 +124,13 @@ $("#input-button").on("click", function() {
       var timeZone = timeResult.zoneName;
       var currentTimeAtLocation = timeResult.formatted;
       $("#location-div").html(`
-          <h1>Current Time: ${currentTimeAtLocation}</h1>
-          <h2>Country: ${country} </h2>
-          <h2>Time Zone: ${timeZone} </h2>
-          <p>GPS coordinates: ${currentLat}, ${currentLng} </p>
-          `);
+  <h1>Current Time: ${currentTimeAtLocation}</h1>
+  <h2>Country: ${country} </h2>
+  <h2>Time Zone: ${timeZone} </h2>
+  <p>GPS coordinates: ${currentLat}, ${currentLng} </p>
+  `);
     });
   });
 });
+
+

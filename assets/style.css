@@ -1,20 +1,83 @@
-.testbox{
-    color: red;
+.testbox {
+    color: white;
     border: solid;
     margin: 2px;
     padding: 2px;
 }
-body{
-    background-color: lightblue;
-}
-#globe-div{
-    background-color: black;
-}
-#location-div{
-    height: 70vh;
-    /* width: em,rem,ex; */
+
+body {
+    background-image: url(https://lh3.googleusercontent.com/proxy/RaORVIJ2-S86f0hVYrkc7rzWXxBX69uIsOJqhAX9ep2bA8KBnZ6VnbAtSAAtqxJ4AZxps-W9V0PoVA4JrWyUKxa41yey1PnX61s);
+    
 }
 
-.blank-box{
+#locationInput{
+background-color: transparent;
+
+}
+
+#globe-div {
+    
+    
+}
+
+#location-div {
+min-height: 225px;
+}
+
+.blank-box {
     height: 25px;
+}
+
+.background {
+    color: white;
+    min-height: 95vh;
+    /* background-color: darkslategrey; */
+}
+
+.footer {
+    margin-top: 25px;
+    margin-bottom: 4px;
+    margin-left: auto;
+    margin-right: auto;
+    border: solid white;
+    padding-left: 1vw;
+
+}
+
+#input-button {
+    border-top: 1px solid #f2f2f2;
+    background: #02a607;
+    /* background: -webkit-gradient(linear, left top, left bottom, from(#05119c), to(#02a607)); */
+    /* check eror */
+    background: -webkit-linear-gradient(top, #05119c, #02a607);
+    background: -moz-linear-gradient(top, #05119c, #02a607);
+    background: -ms-linear-gradient(top, #05119c, #02a607);
+    background: -o-linear-gradient(top, #05119c, #02a607);
+    padding: 8.5px 17px;
+    -webkit-border-radius: 40px;
+    -moz-border-radius: 40px;
+    border-radius: 40px;
+    -webkit-box-shadow: rgba(0, 0, 0, 1) 0 1px 0;
+    -moz-box-shadow: rgba(0, 0, 0, 1) 0 1px 0;
+    box-shadow: rgba(0, 0, 0, 1) 0 1px 0;
+    text-shadow: rgba(0, 0, 0, .4) 0 1px 0;
+    color: #ffffff;
+    font-size: 20px;
+    font-family: Helvetica, Arial, Sans-Serif;
+    text-decoration: none;
+    vertical-align: middle;
+}
+
+#input-button:hover {
+    border-top-color: #0d15b3;
+    background: #0d15b3;
+    color: #ccc;
+}
+
+#input-button:active {
+    border-top-color: #1b435e;
+    background: #1b435e;
+}
+.right-div{
+    min-width: 125px;
 }
