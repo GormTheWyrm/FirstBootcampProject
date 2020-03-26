@@ -6,7 +6,7 @@
 }
 
 body {
-    background-image: url(https://lh3.googleusercontent.com/proxy/RaORVIJ2-S86f0hVYrkc7rzWXxBX69uIsOJqhAX9ep2bA8KBnZ6VnbAtSAAtqxJ4AZxps-W9V0PoVA4JrWyUKxa41yey1PnX61s);
+    background-image: url(https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2Ff%2Ff3%2FGalaxy_history_revealed_by_the_Hubble_Space_Telescope_%2528GOODS-ERS2%2529.jpg%2F1200px-Galaxy_history_revealed_by_the_Hubble_Space_Telescope_%2528GOODS-ERS2%2529.jpg&f=1&nofb=1);
     
 }
 
@@ -15,10 +15,7 @@ background-color: transparent;
 
 }
 
-#globe-div {
-    
-    
-}
+
 
 #location-div {
 min-height: 225px;
