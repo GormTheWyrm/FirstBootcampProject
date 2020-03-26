@@ -32,16 +32,7 @@ links to deployed app and github repo
 
 
 cities displayed;
-    somewhere in us
-    somewhere in germany
-
-    moscow
-    sydney
-    beijing
-    london
-    washington dc
-    los angelos
-
+ 
     london
     LA
     beijing
@@ -49,5 +40,10 @@ cities displayed;
     sidney
     
 
-
+Things Geordin thinks should be implemented
+    1. zoom out a bit upon pulling up a city. The globe spins so the city leaves the page too soon
+        alternative is to reduce or stop globe spin, but I like that the globe spins, it just looks better when zoomed out
+    2. ???
+    3. Profit!
+    4. we will talk about the presentation we need to give on thursday. Take care of yourselves.
     
