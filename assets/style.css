@@ -78,3 +78,8 @@ min-height: 225px;
 .right-div{
     min-width: 125px;
 }
+.pinned-div{
+    border: dashed green;
+    margin-left: 2vw;
+    align-items: center;
+}
