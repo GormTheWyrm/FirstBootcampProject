@@ -32,7 +32,7 @@ function initialize() {
   }
 
   //adding markers to the globe, just need to add the markers from a variable from the search
-
+//marker for Syndey, Australia 
   var markerSydney = WE.marker([-33.865143, 151.2], ).addTo(earth);
   markerSydney
     .bindPopup(
@@ -40,7 +40,7 @@ function initialize() {
       { maxWidth: 120, closeButton: true }
     )
     .openPopup();
-
+//marker for London, England
   var markerLondon = WE.marker([55.006763, -7.31]).addTo(earth);
   markerLondon
     .bindPopup("<span style='color:black'>London</span>", {
@@ -48,6 +48,7 @@ function initialize() {
       closeButton: true
     })
     .openPopup();
+  //marker for Moscow, Russia
   var markerMoscow = WE.marker([55.751, 37.6]).addTo(earth);
   markerMoscow
     .bindPopup("<span style='color:black'>Moscow</span>", {
@@ -55,6 +56,7 @@ function initialize() {
       closeButton: true
     })
     .openPopup();
+  //marker for Beijing, China
   var markerBeijing = WE.marker([39.9, 116.3]).addTo(earth);
   markerBeijing
     .bindPopup("<span style='color:black'>Beijing</span>", {
@@ -62,6 +64,7 @@ function initialize() {
       closeButton: true
     })
     .openPopup();
+    //marker for Los Angeles, CA, USA
   var markerLosAngeles = WE.marker([34, -118]).addTo(earth);
   markerLosAngeles
     .bindPopup("<span style='color:black'>Los Angeles</span>", {
@@ -70,7 +73,7 @@ function initialize() {
     })
     .openPopup();
 
-
+//on click function that adds the marker when someone searches for a city in the search bar
   $("#input-button").on("click", function() {
       var geoCodeAPIkey = "356c83d937c04b978709b023ccb3530f";
       var timeZoneAPIkey = "3XNBGBH1XHV0";
