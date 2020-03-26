@@ -73,43 +73,36 @@ function initialize() {
     })
     .openPopup();
 
+  $("#input-button").on("click", function() {
+      var geoCodeAPIkey = "356c83d937c04b978709b023ccb3530f";
+      var timeZoneAPIkey = "3XNBGBH1XHV0";
+      var locationInput = $("#locationInput").val();
+      var geoCodequeryURL = `https://api.opencagedata.com/geocode/v1/json?q=${locationInput}&key=${geoCodeAPIkey}`;
 
-  $("#input-button").on("click", function () {
-    var geoCodeAPIkey = "356c83d937c04b978709b023ccb3530f";
-    var timeZoneAPIkey = "3XNBGBH1XHV0";
-    var locationInput = $("#locationInput").val();
-    var geoCodequeryURL = `https://api.opencagedata.com/geocode/v1/json?q=${locationInput}&key=${geoCodeAPIkey}`;
+      $.ajax({
+        url: geoCodequeryURL,
+        method: "GET"
+      }).then(function(response) {
+        console.log(response);
+        var currentLat = response.results[0].geometry.lat;
+        var currentLng = response.results[0].geometry.lng;
+        var cityName = response.results[0].components.city;
+    //need to add flyTo function
 
-    $.ajax({
-      url: geoCodequeryURL,
-      method: "GET"
-    }).then(function (response) {
-      console.log(response);
-      var currentLat = response.results[0].geometry.lat;
-      var currentLng = response.results[0].geometry.lng;
-      var cityName = response.results[0].components.city;
-      //need to add flyTo function
-
-      var searchMarker = WE.marker([currentLat, currentLng]).addTo(earth);
-      searchMarker.bindPopup(`<span style='color:black'>You typed in: ${cityName}</span>`, {
-        maxWidth: 120,
-        closeButton: false
-      }).openPopup();
-      // panTo([currentLat, currentLng]);
-      function flyto() {
-        earth.fitBounds([[currentLat, currentLat + 100], [currentLng, currentLng + 100]]);
-        earth.panInsideBounds([[currentLat, currentLat + 100], [currentLng, currentLng + 100]],
-          { heading: 90, tilt: 25, duration: 1 });
-      };
-      flyto()
-    });
-  });
-  // var markerCustom = WE.marker(
-  //   [50, -9],
-  //   "/img/logo-webglearth-white-100.png",
-  //   100,
-  //   24
-  // ).addTo(earth);
+  var searchMarker = WE.marker([currentLat, currentLng]).addTo(earth);
+  searchMarker.bindPopup(`<span style='color:black'>You typed in: ${cityName}</span>`, {
+    maxWidth: 120,
+    closeButton: false
+  }).openPopup();
+  // panTo([currentLat, currentLng]);
+  function flyto() {
+    earth.fitBounds([[currentLat,currentLat+100],[currentLng,currentLng+100]]);
+    earth.panInsideBounds([[currentLat,currentLat+100],[currentLng,currentLng+100]],
+    {heading: 90, tilt: 25, duration: 4});
+  };
+  flyto()
+});
+});
   //sets where the earth starts out....right now it's richmond. 3.5 is the amount of zoom
   earth.setView([37.540726, -77.43605], 3.5);
 }
@@ -143,50 +136,73 @@ $("#input-button").on("click", function () {
       var currentDateAtLocation = timeInfoArray[0];
       var currentTimeAtLocation = timeInfoArray[1];
       $(".location-div").html(`
-  <h1>Current Time: ${currentTimeAtLocation}</h1>
-  <h1>Current Date: ${currentDateAtLocation}</ha>
-  <h2>Country: ${country} </h2>
-  <h2>Time Zone: ${timeZone} </h2>
-  <p>GPS coordinates: ${currentLat}, ${currentLng} </p>
-  `);
+        <h1>Current Time: ${currentTimeAtLocation}</h1>
+        <h1>Current Date: ${currentDateAtLocation}</ha>
+        <h2>Country: ${country} </h2>
+        <h2>Time Zone: ${timeZone} </h2>
+        <p>GPS coordinates: ${currentLat}, ${currentLng} </p>
+        `);
     });
   });
 });
 
 var cityInfoArray = [];
-
+var majorCitiesArray = [
+  "London, United Kingdom",
+  "Beijing, China",
+  "Sydney, Australia",
+  "Moscow, Russia",
+  "Los Angeles, CA, United States of America"
+];
 function getCityInfo() {
-  var majorCities = [
-    "London, United Kingdom",
-    "Beijing, China",
-    "Sydney, Australia",
-    "Moscow, Russia",
-    "Los Angeles, CA, United States of America",
-  ];
-  majorCities.forEach(function (city) {
+  var cityNumber = 0;
+  majorCitiesArray.forEach(function(city, index) {
     var geoCodeAPIkey = "700f8122007345be85cf878d02de94cd";
     var geoCodequeryURL = `https://api.opencagedata.com/geocode/v1/json?q=${city}&key=${geoCodeAPIkey}`;
-    $.ajax({
-      url: geoCodequeryURL,
-      method: "GET"
-    }).then(function (response) {
-      var cityInfoObject = {
-        cityLat: response.results[0].geometry.lat,
-        cityLng: response.results[0].geometry.lng
-      };
-      var timeZoneQueryURL = `http://api.timezonedb.com/v2.1/get-time-zone?key=${timeZoneAPIkey}&format=json&by=position&lat=${cityInfoObject.cityLat}&lng=${cityInfoObject.cityLng}`;
+    setTimeout(function() {
       $.ajax({
-        url: timeZoneQueryURL,
+        url: geoCodequeryURL,
         method: "GET"
-      }).then(function timeSearch(timeResult) {
-        var timeInfoFull = timeResult.formatted;
-        var timeInfoArray = timeInfoFull.split(" ");
-        cityInfoObject.cityTime = timeInfoArray[1];
+      }).then(function(response) {
+        var cityInfoObject = {
+          cityLat: response.results[0].geometry.lat,
+          cityLng: response.results[0].geometry.lng
+        };
+        var timeZoneQueryURL = `http://api.timezonedb.com/v2.1/get-time-zone?key=${timeZoneAPIkey}&format=json&by=position&lat=${cityInfoObject.cityLat}&lng=${cityInfoObject.cityLng}`;
+        $.ajax({
+          url: timeZoneQueryURL,
+          method: "GET"
+        }).then(function timeSearch(timeResult) {
+          var timeInfoFull = timeResult.formatted;
+          var timeInfoArray = timeInfoFull.split(" ");
+          cityInfoObject.cityTime = timeInfoArray[1];
+        });
+        cityInfoArray.push(cityInfoObject);
+        cityNumber++;
+        if (cityNumber === majorCitiesArray.length){
+        console.log(cityInfoArray)
+        populateCityInfo();
+        }
       });
-      cityInfoArray.push(cityInfoObject);
-      console.log(cityInfoArray)
-    });
+    }, 1000 * index);
   })
 }
-// getCityInfo()
+getCityInfo()
 
+function populateCityInfo(){
+  $("#city1").html(`
+  <p>${majorCitiesArray[0]}</p>
+  <p>Time: ${cityInfoArray[0].cityTime}</p>`);
+  $("#city2").html(`
+  <p>${majorCitiesArray[1]}</p>
+  <p>Time: ${cityInfoArray[1].cityTime}</p>`);
+  $("#city3").html(`
+  <p>${majorCitiesArray[2]}</p>
+  <p>Time: ${cityInfoArray[2].cityTime}</p>`);
+  $("#city4").html(`
+  <p>${majorCitiesArray[3]}</p>
+  <p>Time: ${cityInfoArray[3].cityTime}</p>`);
+  $("#city5").html(`
+  <p>${majorCitiesArray[4]}</p>
+  <p>Time: ${cityInfoArray[4].cityTime}</p>`);
+}
