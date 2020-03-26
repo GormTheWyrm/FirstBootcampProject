@@ -26,14 +26,14 @@ function initialize() {
     earth.setCenter([c[0], c[1] + 0.1 * (elapsed / 45)]);
     requestAnimationFrame(animate);
   });
-// function to establish panning for custom marker additions
-  function panTo(coords){
+  // function to establish panning for custom marker additions
+  function panTo(coords) {
     earth.panTo(coords);
   }
 
   //adding markers to the globe, just need to add the markers from a variable from the search
 
-  var markerSydney = WE.marker([-33.865143, 151.2], ).addTo(earth);
+  var markerSydney = WE.marker([-33.865143, 151.2]).addTo(earth);
   markerSydney
     .bindPopup(
       "<span id='sydneyPopUp' style='color:black'>Sydey</span>",
@@ -71,36 +71,36 @@ function initialize() {
     .openPopup();
 
 
-  $("#input-button").on("click", function() {
-      var geoCodeAPIkey = "356c83d937c04b978709b023ccb3530f";
-      var timeZoneAPIkey = "3XNBGBH1XHV0";
-      var locationInput = $("#locationInput").val();
-      var geoCodequeryURL = `https://api.opencagedata.com/geocode/v1/json?q=${locationInput}&key=${geoCodeAPIkey}`;
+  $("#input-button").on("click", function () {
+    var geoCodeAPIkey = "356c83d937c04b978709b023ccb3530f";
+    var timeZoneAPIkey = "3XNBGBH1XHV0";
+    var locationInput = $("#locationInput").val();
+    var geoCodequeryURL = `https://api.opencagedata.com/geocode/v1/json?q=${locationInput}&key=${geoCodeAPIkey}`;
 
-      $.ajax({
-        url: geoCodequeryURL,
-        method: "GET"
-      }).then(function(response) {
-        console.log(response);
-        var currentLat = response.results[0].geometry.lat;
-        var currentLng = response.results[0].geometry.lng;
-        var cityName = response.results[0].components.city;
-    //need to add flyTo function
+    $.ajax({
+      url: geoCodequeryURL,
+      method: "GET"
+    }).then(function (response) {
+      console.log(response);
+      var currentLat = response.results[0].geometry.lat;
+      var currentLng = response.results[0].geometry.lng;
+      var cityName = response.results[0].components.city;
+      //need to add flyTo function
 
-  var searchMarker = WE.marker([currentLat, currentLng]).addTo(earth);
-  searchMarker.bindPopup(`<span style='color:black'>You typed in: ${cityName}</span>`, {
-    maxWidth: 120,
-    closeButton: false
-  }).openPopup();
-  // panTo([currentLat, currentLng]);
-  function flyto() {
-    earth.fitBounds([[currentLat,currentLat+100],[currentLng,currentLng+100]]);
-    earth.panInsideBounds([[currentLat,currentLat+100],[currentLng,currentLng+100]],
-    {heading: 90, tilt: 25, duration: 1});
-  };
-  flyto()
-});
-});
+      var searchMarker = WE.marker([currentLat, currentLng]).addTo(earth);
+      searchMarker.bindPopup(`<span style='color:black'>You typed in: ${cityName}</span>`, {
+        maxWidth: 120,
+        closeButton: false
+      }).openPopup();
+      // panTo([currentLat, currentLng]);
+      function flyto() {
+        earth.fitBounds([[currentLat, currentLat + 100], [currentLng, currentLng + 100]]);
+        earth.panInsideBounds([[currentLat, currentLat + 100], [currentLng, currentLng + 100]],
+          { heading: 90, tilt: 25, duration: 1 });
+      };
+      flyto()
+    });
+  });
   // var markerCustom = WE.marker(
   //   [50, -9],
   //   "/img/logo-webglearth-white-100.png",
@@ -115,7 +115,7 @@ initialize();
 var geoCodeAPIkey = "356c83d937c04b978709b023ccb3530f";
 var timeZoneAPIkey = "3XNBGBH1XHV0";
 
-$("#input-button").on("click", function() {
+$("#input-button").on("click", function () {
 
   var locationInput = $("#locationInput").val();
   var geoCodequeryURL = `https://api.opencagedata.com/geocode/v1/json?q=${locationInput}&key=${geoCodeAPIkey}`;
@@ -123,7 +123,7 @@ $("#input-button").on("click", function() {
   $.ajax({
     url: geoCodequeryURL,
     method: "GET"
-  }).then(function(response) {
+  }).then(function (response) {
     var currentLat = response.results[0].geometry.lat;
     var currentLng = response.results[0].geometry.lng;
     var cityName = response.results[0].components.city;
@@ -160,13 +160,13 @@ function getCityInfo() {
     "Moscow, Russia",
     "Los Angeles, CA, United States of America",
   ];
-  majorCities.forEach(function(city) {
+  majorCities.forEach(function (city) {
     var geoCodeAPIkey = "700f8122007345be85cf878d02de94cd";
     var geoCodequeryURL = `https://api.opencagedata.com/geocode/v1/json?q=${city}&key=${geoCodeAPIkey}`;
     $.ajax({
       url: geoCodequeryURL,
       method: "GET"
-    }).then(function(response) {
+    }).then(function (response) {
       var cityInfoObject = {
         cityLat: response.results[0].geometry.lat,
         cityLng: response.results[0].geometry.lng
@@ -175,15 +175,15 @@ function getCityInfo() {
       $.ajax({
         url: timeZoneQueryURL,
         method: "GET"
-          }).then(function timeSearch(timeResult) {
-            var timeInfoFull = timeResult.formatted;
-            var timeInfoArray = timeInfoFull.split(" ");
-            cityInfoObject.cityTime = timeInfoArray[1];
-         });
-    cityInfoArray.push(cityInfoObject);
-    console.log(cityInfoArray)
-  });
-})
+      }).then(function timeSearch(timeResult) {
+        var timeInfoFull = timeResult.formatted;
+        var timeInfoArray = timeInfoFull.split(" ");
+        cityInfoObject.cityTime = timeInfoArray[1];
+      });
+      cityInfoArray.push(cityInfoObject);
+      console.log(cityInfoArray)
+    });
+  })
 }
 // getCityInfo()
 
