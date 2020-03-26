@@ -26,14 +26,14 @@ function initialize() {
     earth.setCenter([c[0], c[1] + 0.1 * (elapsed / 45)]);
     requestAnimationFrame(animate);
   });
-// function to establish panning for custom marker additions
-  function panTo(coords){
+  // function to establish panning for custom marker additions
+  function panTo(coords) {
     earth.panTo(coords);
   }
 
   //adding markers to the globe, just need to add the markers from a variable from the search
 
-  var markerSydney = WE.marker([-33.865143, 151.2], ).addTo(earth);
+  var markerSydney = WE.marker([-33.865143, 151.2]).addTo(earth);
   markerSydney
     .bindPopup(
       "<span id='sydneyPopUp' style='color:black'>Sydey</span>",
@@ -108,7 +108,7 @@ initialize();
 var geoCodeAPIkey = "356c83d937c04b978709b023ccb3530f";
 var timeZoneAPIkey = "3XNBGBH1XHV0";
 
-$("#input-button").on("click", function() {
+$("#input-button").on("click", function () {
 
   var locationInput = $("#locationInput").val();
   var geoCodequeryURL = `https://api.opencagedata.com/geocode/v1/json?q=${locationInput}&key=${geoCodeAPIkey}`;
@@ -116,7 +116,7 @@ $("#input-button").on("click", function() {
   $.ajax({
     url: geoCodequeryURL,
     method: "GET"
-  }).then(function(response) {
+  }).then(function (response) {
     var currentLat = response.results[0].geometry.lat;
     var currentLng = response.results[0].geometry.lng;
     var cityName = response.results[0].components.city;
@@ -152,7 +152,6 @@ var majorCitiesArray = [
   "Los Angeles, CA, United States of America"
 ];
 function getCityInfo() {
-
   var cityNumber = 0;
   majorCitiesArray.forEach(function(city, index) {
     var geoCodeAPIkey = "700f8122007345be85cf878d02de94cd";
