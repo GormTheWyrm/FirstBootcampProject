@@ -31,3 +31,17 @@ Things Geordin thinks should be implemented
     3. Profit!
     4. we will talk about the presentation we need to give on thursday. Take care of yourselves.
     
+
+
+    ~~~~~~~~~~ Presentation ~~~~~~~~~
+    All must talk!
+        introduce members
+        BIGGEST PART IS Demo-ing the project.
+            keep it under ten but aim for over five
+        what apis used
+        what technology used
+
+        dmitri suggest
+        if we had more time what would we do/have done?
+            fun facts for different countries.
+                might have brought in another API, but we have not identifies which one yet...
