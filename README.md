@@ -1,23 +1,7 @@
 # FirstBootcampProject
 
+We built a simple webpage that connects to 
 
-This app shows the users location
-
-
-
-Have we finalized the APIs?
-how do we want user input?
-    buttons are easiest
-    what does user need to type?
-
-
-
-1. Alert that asks user if they want to use browser location
-2. pulls info for that location
-3. loads pins for preset locations
-4. user can search for a location
-    -long,lat
-    -city name
 
 
 
@@ -47,3 +31,17 @@ Things Geordin thinks should be implemented
     3. Profit!
     4. we will talk about the presentation we need to give on thursday. Take care of yourselves.
     
+
+
+    ~~~~~~~~~~ Presentation ~~~~~~~~~
+    All must talk!
+        introduce members
+        BIGGEST PART IS Demo-ing the project.
+            keep it under ten but aim for over five
+        what apis used
+        what technology used
+
+        dmitri suggest
+        if we had more time what would we do/have done?
+            fun facts for different countries.
+                might have brought in another API, but we have not identifies which one yet...
