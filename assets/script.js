@@ -83,7 +83,11 @@ function initialize() {
         console.log(response);
         var currentLat = response.results[0].geometry.lat;
         var currentLng = response.results[0].geometry.lng;
-        var cityName = response.results[0].components.city;
+        if (response.results[0].components.city == undefined) {
+          var cityName = locationInput
+        }
+        else{
+        var cityName = response.results[0].components.city;}
     //need to add flyTo function
 
   var searchMarker = WE.marker([currentLat, currentLng]).addTo(earth);
@@ -228,3 +232,12 @@ for (var i = 0; i < majorCitiesArray.length; i++) {
   <p>${majorCitiesArray[i]}</p>
   <p>Time: <b>${cityInfoArray[i].cityTime}</b></p>`);
 }}
+
+function populateCityInfoStart() {
+  for (var i = 0; i < majorCitiesArray.length; i++) {
+    $(`#city${i + 1}`).html(`
+  <p>${majorCitiesArray[i]}</p>
+  <p>Time:</p>`);
+  }
+}
+populateCityInfoStart()
