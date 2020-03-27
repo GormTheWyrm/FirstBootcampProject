@@ -76,40 +76,6 @@ function initialize() {
       var locationInput = $("#locationInput").val();
       var geoCodequeryURL = `https://api.opencagedata.com/geocode/v1/json?q=${locationInput}&key=${geoCodeAPIkey}`;
 
-<<<<<<< HEAD
-    $.ajax({
-      url: geoCodequeryURL,
-      method: "GET"
-    }).then(function (response) {
-      console.log(response);
-      var currentLat = response.results[0].geometry.lat;
-      var currentLng = response.results[0].geometry.lng;
-      var cityName = response.results[0].components.city;
-      var atmosphere = true;
-
-//API function adding the marker
-      var searchMarker = WE.marker([currentLat, currentLng]).addTo(earth);
-      searchMarker.bindPopup(`<span style='color:black'>You typed in: ${cityName}</span>`, {
-        maxWidth: 120,
-        closeButton: false
-      }).openPopup();
-      // API function that sends the globe to the location the user searched for
-      function flyTo() {
-        earth.fitBounds([[currentLat, currentLng - 50], [currentLat, currentLng + 50]]);
-        earth.panInsideBounds([[currentLat, currentLng  - 50], [currentLat, currentLng + 50]],
-          { heading: 100, tilt: 25, duration: 5 });
-        earth.setZoom(3);
-      };
-      flyTo()
-    });
-  });
-  // var markerCustom = WE.marker(
-  //   [50, -9],
-  //   "/img/logo-webglearth-white-100.png",
-  //   100,
-  //   24
-  // ).addTo(earth);
-=======
       $.ajax({
         url: geoCodequeryURL,
         method: "GET"
@@ -126,15 +92,15 @@ function initialize() {
     closeButton: false
   }).openPopup();
   // panTo([currentLat, currentLng]);
-  function flyto() {
-    earth.fitBounds([[currentLat,currentLat+100],[currentLng,currentLng+100]]);
-    earth.panInsideBounds([[currentLat,currentLat+100],[currentLng,currentLng+100]],
-    {heading: 90, tilt: 25, duration: 4});
+  function flyTo() {
+    earth.fitBounds([[currentLat, currentLng - 50], [currentLat, currentLng + 50]]);
+    earth.panInsideBounds([[currentLat, currentLng  - 50], [currentLat, currentLng + 50]],
+      { heading: 100, tilt: 25, duration: 5 });
+    earth.setZoom(3);
   };
-  flyto()
+  flyTo()
 });
 });
->>>>>>> f70b0224c296a5d950ff8a72232f3709d970f562
   //sets where the earth starts out....right now it's richmond. 3.5 is the amount of zoom
   earth.setView([37.540726, -77.43605], 3.5);
 }
