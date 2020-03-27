@@ -131,7 +131,8 @@ $("#input-button").on("click", function () {
       var timeInfoFull = timeResult.formatted;
       var timeInfoArray = timeInfoFull.split(" ");
       var currentDateAtLocation = timeInfoArray[0];
-      var currentTimeAtLocation = timeInfoArray[1];
+      var timeArray = timeInfoArray[1].split(":");
+      var currentTimeAtLocation = `${timeArray[0]}:${timeArray[1]}`;
       $(".location-div").html(`
         <h1>Current Time: ${currentTimeAtLocation}</h1>
         <h1>Current Date: ${currentDateAtLocation}</ha>
@@ -141,6 +142,9 @@ $("#input-button").on("click", function () {
         `);
     });
   });
+  setTimeout(function() {
+    updateCityInfo()
+  }, 1000);
 });
 
 var cityInfoArray = [];
@@ -172,7 +176,8 @@ function getCityInfo() {
         }).then(function timeSearch(timeResult) {
           var timeInfoFull = timeResult.formatted;
           var timeInfoArray = timeInfoFull.split(" ");
-          cityInfoObject.cityTime = timeInfoArray[1];
+          var timeArray = timeInfoArray[1].split(":");
+          cityInfoObject.cityTime = `${timeArray[0]}:${timeArray[1]}`;
         });
         cityInfoArray.push(cityInfoObject);
         cityNumber++;
@@ -184,22 +189,41 @@ function getCityInfo() {
     }, 1000 * index);
   })
 }
+
+function updateCityInfo(){
+  cityNumber = 0
+  var offsetArray = [8,11,3,17]
+  var timeZoneQueryURL = `http://api.timezonedb.com/v2.1/get-time-zone?key=${timeZoneAPIkey}&format=json&by=position&lat=${cityInfoArray[0].cityLat}&lng=${cityInfoArray[0].cityLng}`;
+  $.ajax({
+    url: timeZoneQueryURL,
+    method: "GET"
+  }).then(function timeSearch(timeResult) {
+    var timeInfoFull = timeResult.formatted;
+    var timeInfoArray = timeInfoFull.split(" ");
+    var timeArray = timeInfoArray[1].split(":");
+    cityInfoArray[0].cityTime = `${timeArray[0]}:${timeArray[1]}`;
+  });
+  for (var i = 1; i < cityInfoArray.length; i++) {
+    cityNumber++;
+    var startTimeArray = cityInfoArray[0].cityTime.split(":");
+    var hrAdjust = +(startTimeArray[0]) + +(offsetArray[i-1]);
+    if (hrAdjust > 24) {
+      hrAdjust = hrAdjust - 24
+    }
+    cityInfoArray[i].cityTime = `${hrAdjust}:${startTimeArray[1]}`;
+    if(cityNumber === majorCitiesArray.length-1) {
+          console.log(cityInfoArray)
+          populateCityInfo();
+        };
+      };
+  }
+
+
 getCityInfo()
 
 function populateCityInfo(){
-  $("#city1").html(`
-  <p>${majorCitiesArray[0]}</p>
-  <p>Time: ${cityInfoArray[0].cityTime}</p>`);
-  $("#city2").html(`
-  <p>${majorCitiesArray[1]}</p>
-  <p>Time: ${cityInfoArray[1].cityTime}</p>`);
-  $("#city3").html(`
-  <p>${majorCitiesArray[2]}</p>
-  <p>Time: ${cityInfoArray[2].cityTime}</p>`);
-  $("#city4").html(`
-  <p>${majorCitiesArray[3]}</p>
-  <p>Time: ${cityInfoArray[3].cityTime}</p>`);
-  $("#city5").html(`
-  <p>${majorCitiesArray[4]}</p>
-  <p>Time: ${cityInfoArray[4].cityTime}</p>`);
-}
+for (var i = 0; i < majorCitiesArray.length; i++) {
+  $(`#city${i+1}`).html(`
+  <p>${majorCitiesArray[i]}</p>
+  <p>Time: <b>${cityInfoArray[i].cityTime}</b></p>`);
+}}
