@@ -3,6 +3,7 @@
     border: solid;
     margin: 2px;
     padding: 2px;
+    justify-content: center;
 }
 
 body {
@@ -80,6 +81,11 @@ min-height: 225px;
 }
 .pinned-div{
     border: dashed green;
-    margin-left: 2vw;
-    align-items: center;
+    /* margin-left: .5vw;
+    margin-right: .5vw; */
+    /* align-items: center; */
+    padding-left: 2px;
+    padding-right: 2px;
+    margin-left: 0px;
+    margin-right: 0px;
 }
