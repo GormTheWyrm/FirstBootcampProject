@@ -1,17 +1,18 @@
 .testbox {
     color: white;
-    border: solid;
+    /* border: solid; */
     margin: 2px;
     padding: 2px;
+    
 }
 
 body {
     background-image: url(https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2Ff%2Ff3%2FGalaxy_history_revealed_by_the_Hubble_Space_Telescope_%2528GOODS-ERS2%2529.jpg%2F1200px-Galaxy_history_revealed_by_the_Hubble_Space_Telescope_%2528GOODS-ERS2%2529.jpg&f=1&nofb=1);
-    
 }
 
 #locationInput{
 background-color: transparent;
+
 
 }
 
@@ -77,4 +78,11 @@ min-height: 225px;
 }
 .right-div{
     min-width: 125px;
+  
+}
+.pinned-div{
+   color: white;
+   
+
+    
 }
