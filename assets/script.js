@@ -10,7 +10,7 @@
 function initialize() {
   var options = { atmosphere: false, center: [37.540726, -77.43605], zoom: 5 };
   var earth = new WE.map("earth_div", options);
-  WE.tileLayer("http://tileserver.maptiler.com/nasa/{z}/{x}/{y}.jpg", {
+  WE.tileLayer("https://tileserver.maptiler.com/nasa/{z}/{x}/{y}.jpg", {
     minZoom: 0,
     maxZoom: 5,
     attribution: "NASA"
@@ -122,7 +122,7 @@ $("#input-button").on("click", function () {
     var currentLng = response.results[0].geometry.lng;
     var cityName = response.results[0].components.city;
     var country = response.results[0].components.country;
-    var timeZoneQueryURL = `http://api.timezonedb.com/v2.1/get-time-zone?key=${timeZoneAPIkey}&format=json&by=position&lat=${currentLat}&lng=${currentLng}`;
+    var timeZoneQueryURL = `https://api.timezonedb.com/v2.1/get-time-zone?key=${timeZoneAPIkey}&format=json&by=position&lat=${currentLat}&lng=${currentLng}`;
     $.ajax({
       url: timeZoneQueryURL,
       method: "GET"
@@ -170,7 +170,7 @@ function getCityInfo() {
           cityLat: response.results[0].geometry.lat,
           cityLng: response.results[0].geometry.lng
         };
-        var timeZoneQueryURL = `http://api.timezonedb.com/v2.1/get-time-zone?key=${timeZoneAPIkey}&format=json&by=position&lat=${cityInfoObject.cityLat}&lng=${cityInfoObject.cityLng}`;
+        var timeZoneQueryURL = `https://api.timezonedb.com/v2.1/get-time-zone?key=${timeZoneAPIkey}&format=json&by=position&lat=${cityInfoObject.cityLat}&lng=${cityInfoObject.cityLng}`;
         $.ajax({
           url: timeZoneQueryURL,
           method: "GET"
@@ -194,7 +194,7 @@ function getCityInfo() {
 function updateCityInfo(){
   cityNumber = 0
   var offsetArray = [8,11,3,17]
-  var timeZoneQueryURL = `http://api.timezonedb.com/v2.1/get-time-zone?key=${timeZoneAPIkey}&format=json&by=position&lat=${cityInfoArray[0].cityLat}&lng=${cityInfoArray[0].cityLng}`;
+  var timeZoneQueryURL = `https://api.timezonedb.com/v2.1/get-time-zone?key=${timeZoneAPIkey}&format=json&by=position&lat=${cityInfoArray[0].cityLat}&lng=${cityInfoArray[0].cityLng}`;
   $.ajax({
     url: timeZoneQueryURL,
     method: "GET"
