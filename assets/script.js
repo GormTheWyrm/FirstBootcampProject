@@ -36,39 +36,39 @@ function initialize() {
   var markerSydney = WE.marker([-33.865143, 151.2]).addTo(earth);
   markerSydney
     .bindPopup(
-      "<span id='sydneyPopUp' style='color:black'>Sydey</span>",
-      { maxWidth: 120, closeButton: true }
+      "<span id='sydneyPopUp' style='color:black'>Sydney, Australia</span>",
+      { maxWidth: 60, closeButton: true }
     )
     .openPopup();
 //marker for London, England
   var markerLondon = WE.marker([55.006763, -7.31]).addTo(earth);
   markerLondon
-    .bindPopup("<span style='color:black'>London</span>", {
-      maxWidth: 120,
+    .bindPopup("<span style='color:black'>London, England</span>", {
+      maxWidth: 60,
       closeButton: true
     })
     .openPopup();
   //marker for Moscow, Russia
   var markerMoscow = WE.marker([55.751, 37.6]).addTo(earth);
   markerMoscow
-    .bindPopup("<span style='color:black'>Moscow</span>", {
-      maxWidth: 120,
+    .bindPopup("<span style='color:black'>Moscow, Russia</span>", {
+      maxWidth: 60,
       closeButton: true
     })
     .openPopup();
   //marker for Beijing, China
   var markerBeijing = WE.marker([39.9, 116.3]).addTo(earth);
   markerBeijing
-    .bindPopup("<span style='color:black'>Beijing</span>", {
-      maxWidth: 120,
+    .bindPopup("<span style='color:black'>Beijing, China</span>", {
+      maxWidth: 60,
       closeButton: true
     })
     .openPopup();
     //marker for Los Angeles, CA, USA
   var markerLosAngeles = WE.marker([34, -118]).addTo(earth);
   markerLosAngeles
-    .bindPopup("<span style='color:black'>Los Angeles</span>", {
-      maxWidth: 120,
+    .bindPopup("<span style='color:black'>Los Angeles, CA, USA</span>", {
+      maxWidth: 60,
       closeButton: true
     })
     .openPopup();
@@ -96,7 +96,7 @@ function initialize() {
         maxWidth: 120,
         closeButton: false
       }).openPopup();
-      // API function that sends the globe to the location user searched
+      // API function that sends the globe to the location the user searched for
       function flyTo() {
         earth.fitBounds([[currentLat, currentLng - 50], [currentLat, currentLng + 50]]);
         earth.panInsideBounds([[currentLat, currentLng  - 50], [currentLat, currentLng + 50]],
