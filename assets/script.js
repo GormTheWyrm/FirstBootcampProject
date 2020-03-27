@@ -10,7 +10,7 @@
 function initialize() {
   var options = { atmosphere: false, center: [37.540726, -77.43605], zoom: 5 };
   var earth = new WE.map("earth_div", options);
-  WE.tileLayer("http://tileserver.maptiler.com/nasa/{z}/{x}/{y}.jpg", {
+  WE.tileLayer("https://tileserver.maptiler.com/nasa/{z}/{x}/{y}.jpg", {
     minZoom: 0,
     maxZoom: 5,
     attribution: "NASA"
@@ -36,36 +36,36 @@ function initialize() {
   var markerSydney = WE.marker([-33.865143, 151.2]).addTo(earth);
   markerSydney
     .bindPopup(
-      "<span id='sydneyPopUp' style='color:black'>Sydey</span>",
-      { maxWidth: 120, closeButton: true }
+      "<span id='sydneyPopUp' style='color:black'>Sydney, Australia</span>",
+      { maxWidth: 60, closeButton: true }
     )
     .openPopup();
 
   var markerLondon = WE.marker([55.006763, -7.31]).addTo(earth);
   markerLondon
-    .bindPopup("<span style='color:black'>London</span>", {
-      maxWidth: 120,
+    .bindPopup("<span style='color:black'>London, England</span>", {
+      maxWidth: 60,
       closeButton: true
     })
     .openPopup();
   var markerMoscow = WE.marker([55.751, 37.6]).addTo(earth);
   markerMoscow
-    .bindPopup("<span style='color:black'>Moscow</span>", {
-      maxWidth: 120,
+    .bindPopup("<span style='color:black'>Moscow, Russia</span>", {
+      maxWidth: 60,
       closeButton: true
     })
     .openPopup();
   var markerBeijing = WE.marker([39.9, 116.3]).addTo(earth);
   markerBeijing
-    .bindPopup("<span style='color:black'>Beijing</span>", {
-      maxWidth: 120,
+    .bindPopup("<span style='color:black'>Beijing, China</span>", {
+      maxWidth: 60,
       closeButton: true
     })
     .openPopup();
   var markerLosAngeles = WE.marker([34, -118]).addTo(earth);
   markerLosAngeles
-    .bindPopup("<span style='color:black'>Los Angeles</span>", {
-      maxWidth: 120,
+    .bindPopup("<span style='color:black'>Los Angeles, CA, USA</span>", {
+      maxWidth: 60,
       closeButton: true
     })
     .openPopup();
@@ -96,12 +96,13 @@ function initialize() {
     closeButton: false
   }).openPopup();
   // panTo([currentLat, currentLng]);
-  function flyto() {
-    earth.fitBounds([[currentLat,currentLat+100],[currentLng,currentLng+100]]);
-    earth.panInsideBounds([[currentLat,currentLat+100],[currentLng,currentLng+100]],
-    {heading: 90, tilt: 25, duration: 4});
+  function flyTo() {
+    earth.fitBounds([[currentLat, currentLng - 50], [currentLat, currentLng + 50]]);
+    earth.panInsideBounds([[currentLat, currentLng  - 50], [currentLat, currentLng + 50]],
+      { heading: 100, tilt: 25, duration: 5 });
+    earth.setZoom(3);
   };
-  flyto()
+  flyTo()
 });
 });
   //sets where the earth starts out....right now it's richmond. 3.5 is the amount of zoom
@@ -125,7 +126,7 @@ $("#input-button").on("click", function () {
     var currentLng = response.results[0].geometry.lng;
     var cityName = response.results[0].components.city;
     var country = response.results[0].components.country;
-    var timeZoneQueryURL = `http://api.timezonedb.com/v2.1/get-time-zone?key=${timeZoneAPIkey}&format=json&by=position&lat=${currentLat}&lng=${currentLng}`;
+    var timeZoneQueryURL = `https://api.timezonedb.com/v2.1/get-time-zone?key=${timeZoneAPIkey}&format=json&by=position&lat=${currentLat}&lng=${currentLng}`;
     $.ajax({
       url: timeZoneQueryURL,
       method: "GET"
@@ -173,7 +174,7 @@ function getCityInfo() {
           cityLat: response.results[0].geometry.lat,
           cityLng: response.results[0].geometry.lng
         };
-        var timeZoneQueryURL = `http://api.timezonedb.com/v2.1/get-time-zone?key=${timeZoneAPIkey}&format=json&by=position&lat=${cityInfoObject.cityLat}&lng=${cityInfoObject.cityLng}`;
+        var timeZoneQueryURL = `https://api.timezonedb.com/v2.1/get-time-zone?key=${timeZoneAPIkey}&format=json&by=position&lat=${cityInfoObject.cityLat}&lng=${cityInfoObject.cityLng}`;
         $.ajax({
           url: timeZoneQueryURL,
           method: "GET"
@@ -197,7 +198,7 @@ function getCityInfo() {
 function updateCityInfo(){
   cityNumber = 0
   var offsetArray = [8,11,3,17]
-  var timeZoneQueryURL = `http://api.timezonedb.com/v2.1/get-time-zone?key=${timeZoneAPIkey}&format=json&by=position&lat=${cityInfoArray[0].cityLat}&lng=${cityInfoArray[0].cityLng}`;
+  var timeZoneQueryURL = `https://api.timezonedb.com/v2.1/get-time-zone?key=${timeZoneAPIkey}&format=json&by=position&lat=${cityInfoArray[0].cityLat}&lng=${cityInfoArray[0].cityLng}`;
   $.ajax({
     url: timeZoneQueryURL,
     method: "GET"
