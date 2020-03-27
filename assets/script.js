@@ -36,82 +36,71 @@ function initialize() {
   var markerSydney = WE.marker([-33.865143, 151.2]).addTo(earth);
   markerSydney
     .bindPopup(
-      "<span id='sydneyPopUp' style='color:black'>Sydey</span>",
-      { maxWidth: 120, closeButton: true }
+      "<span id='sydneyPopUp' style='color:black'>Sydney, Australia</span>",
+      { maxWidth: 60, closeButton: true }
     )
     .openPopup();
-//marker for London, England
+
   var markerLondon = WE.marker([55.006763, -7.31]).addTo(earth);
   markerLondon
-    .bindPopup("<span style='color:black'>London</span>", {
-      maxWidth: 120,
+    .bindPopup("<span style='color:black'>London, England</span>", {
+      maxWidth: 60,
       closeButton: true
     })
     .openPopup();
-  //marker for Moscow, Russia
   var markerMoscow = WE.marker([55.751, 37.6]).addTo(earth);
   markerMoscow
-    .bindPopup("<span style='color:black'>Moscow</span>", {
-      maxWidth: 120,
+    .bindPopup("<span style='color:black'>Moscow, Russia</span>", {
+      maxWidth: 60,
       closeButton: true
     })
     .openPopup();
-  //marker for Beijing, China
   var markerBeijing = WE.marker([39.9, 116.3]).addTo(earth);
   markerBeijing
-    .bindPopup("<span style='color:black'>Beijing</span>", {
-      maxWidth: 120,
+    .bindPopup("<span style='color:black'>Beijing, China</span>", {
+      maxWidth: 60,
       closeButton: true
     })
     .openPopup();
-    //marker for Los Angeles, CA, USA
   var markerLosAngeles = WE.marker([34, -118]).addTo(earth);
   markerLosAngeles
-    .bindPopup("<span style='color:black'>Los Angeles</span>", {
-      maxWidth: 120,
+    .bindPopup("<span style='color:black'>Los Angeles, CA, USA</span>", {
+      maxWidth: 60,
       closeButton: true
     })
     .openPopup();
 
-//click function for adding marker to globe
-  $("#input-button").on("click", function () {
-    var geoCodeAPIkey = "356c83d937c04b978709b023ccb3530f";
-    var timeZoneAPIkey = "3XNBGBH1XHV0";
-    var locationInput = $("#locationInput").val();
-    var geoCodequeryURL = `https://api.opencagedata.com/geocode/v1/json?q=${locationInput}&key=${geoCodeAPIkey}`;
+  $("#input-button").on("click", function() {
+      var geoCodeAPIkey = "356c83d937c04b978709b023ccb3530f";
+      var timeZoneAPIkey = "3XNBGBH1XHV0";
+      var locationInput = $("#locationInput").val();
+      var geoCodequeryURL = `https://api.opencagedata.com/geocode/v1/json?q=${locationInput}&key=${geoCodeAPIkey}`;
 
-    $.ajax({
-      url: geoCodequeryURL,
-      method: "GET"
-    }).then(function (response) {
-      console.log(response);
-      var currentLat = response.results[0].geometry.lat;
-      var currentLng = response.results[0].geometry.lng;
-      var cityName = response.results[0].components.city;
-      var atmosphere = true;
+      $.ajax({
+        url: geoCodequeryURL,
+        method: "GET"
+      }).then(function(response) {
+        console.log(response);
+        var currentLat = response.results[0].geometry.lat;
+        var currentLng = response.results[0].geometry.lng;
+        var cityName = response.results[0].components.city;
+    //need to add flyTo function
 
-//API function adding the marker
-      var searchMarker = WE.marker([currentLat, currentLng]).addTo(earth);
-      searchMarker.bindPopup(`<span style='color:black'>You typed in: ${cityName}</span>`, {
-        maxWidth: 120,
-        closeButton: false
-      }).openPopup();
-      // API function that sends the globe to the location user searched
-      function flyTo() {
-        earth.fitBounds([[currentLat, currentLng - 50], [currentLat, currentLng + 50]]);
-        earth.panInsideBounds([[currentLat, currentLng  - 50], [currentLat, currentLng + 50]],
-          { heading: 100, tilt: 25, duration: 5 });
-        earth.setZoom(3);
-      };
-      flyTo()
-    });
-  });
-  // var markerCustom = WE.marker(
-  //   [50, -9],
-  //   "/img/logo-webglearth-white-100.png",
-  //   100,
-  //   24
-  // ).addTo(earth);
+  var searchMarker = WE.marker([currentLat, currentLng]).addTo(earth);
+  searchMarker.bindPopup(`<span style='color:black'>You typed in: ${cityName}</span>`, {
+    maxWidth: 120,
+    closeButton: false
+  }).openPopup();
+  // panTo([currentLat, currentLng]);
+  function flyTo() {
+    earth.fitBounds([[currentLat, currentLng - 50], [currentLat, currentLng + 50]]);
+    earth.panInsideBounds([[currentLat, currentLng  - 50], [currentLat, currentLng + 50]],
+      { heading: 100, tilt: 25, duration: 5 });
+    earth.setZoom(3);
+  };
+  flyTo()
+});
+});
   //sets where the earth starts out....right now it's richmond. 3.5 is the amount of zoom
   earth.setView([37.540726, -77.43605], 3.5);
 }
@@ -143,53 +132,103 @@ $("#input-button").on("click", function () {
       var timeInfoFull = timeResult.formatted;
       var timeInfoArray = timeInfoFull.split(" ");
       var currentDateAtLocation = timeInfoArray[0];
-      var currentTimeAtLocation = timeInfoArray[1];
+      var timeArray = timeInfoArray[1].split(":");
+      var currentTimeAtLocation = `${timeArray[0]}:${timeArray[1]}`;
       $(".location-div").html(`
-  <h1>Current Time: ${currentTimeAtLocation}</h1>
-  <h1>Current Date: ${currentDateAtLocation}</ha>
-  <h2>Country: ${country} </h2>
-  <h2>Time Zone: ${timeZone} </h2>
-  <p>GPS coordinates: ${currentLat}, ${currentLng} </p>
-  `);
+        <h1>Current Time: ${currentTimeAtLocation}</h1>
+        <h1>Current Date: ${currentDateAtLocation}</ha>
+        <h2>Country: ${country} </h2>
+        <h2>Time Zone: ${timeZone} </h2>
+        <p>GPS coordinates: ${currentLat}, ${currentLng} </p>
+        `);
     });
   });
+  setTimeout(function() {
+    updateCityInfo()
+  }, 1000);
 });
 
 var cityInfoArray = [];
-
+var majorCitiesArray = [
+  "London, United Kingdom",
+  "Beijing, China",
+  "Sydney, Australia",
+  "Moscow, Russia",
+  "Los Angeles, CA, United States of America"
+];
 function getCityInfo() {
-  var majorCities = [
-    "London, United Kingdom",
-    "Beijing, China",
-    "Sydney, Australia",
-    "Moscow, Russia",
-    "Los Angeles, CA, United States of America",
-  ];
-  majorCities.forEach(function (city) {
+  var cityNumber = 0;
+  majorCitiesArray.forEach(function(city, index) {
     var geoCodeAPIkey = "700f8122007345be85cf878d02de94cd";
     var geoCodequeryURL = `https://api.opencagedata.com/geocode/v1/json?q=${city}&key=${geoCodeAPIkey}`;
-    $.ajax({
-      url: geoCodequeryURL,
-      method: "GET"
-    }).then(function (response) {
-      var cityInfoObject = {
-        cityLat: response.results[0].geometry.lat,
-        cityLng: response.results[0].geometry.lng
-      };
-      var timeZoneQueryURL = `http://api.timezonedb.com/v2.1/get-time-zone?key=${timeZoneAPIkey}&format=json&by=position&lat=${cityInfoObject.cityLat}&lng=${cityInfoObject.cityLng}`;
+    setTimeout(function() {
       $.ajax({
-        url: timeZoneQueryURL,
+        url: geoCodequeryURL,
         method: "GET"
-      }).then(function timeSearch(timeResult) {
-        var timeInfoFull = timeResult.formatted;
-        var timeInfoArray = timeInfoFull.split(" ");
-        cityInfoObject.cityTime = timeInfoArray[1];
+      }).then(function(response) {
+        var cityInfoObject = {
+          cityLat: response.results[0].geometry.lat,
+          cityLng: response.results[0].geometry.lng
+        };
+        var timeZoneQueryURL = `http://api.timezonedb.com/v2.1/get-time-zone?key=${timeZoneAPIkey}&format=json&by=position&lat=${cityInfoObject.cityLat}&lng=${cityInfoObject.cityLng}`;
+        $.ajax({
+          url: timeZoneQueryURL,
+          method: "GET"
+        }).then(function timeSearch(timeResult) {
+          var timeInfoFull = timeResult.formatted;
+          var timeInfoArray = timeInfoFull.split(" ");
+          var timeArray = timeInfoArray[1].split(":");
+          cityInfoObject.cityTime = `${timeArray[0]}:${timeArray[1]}`;
+        });
+        cityInfoArray.push(cityInfoObject);
+        cityNumber++;
+        if (cityNumber === majorCitiesArray.length){
+        console.log(cityInfoArray)
+        populateCityInfo();
+        }
       });
-      cityInfoArray.push(cityInfoObject);
-      console.log(cityInfoArray)
-    });
+    }, 1000 * index);
   })
 }
-// getCityInfo()
+
+<<<<<<< HEAD
+
+=======
+function updateCityInfo(){
+  cityNumber = 0
+  var offsetArray = [8,11,3,17]
+  var timeZoneQueryURL = `http://api.timezonedb.com/v2.1/get-time-zone?key=${timeZoneAPIkey}&format=json&by=position&lat=${cityInfoArray[0].cityLat}&lng=${cityInfoArray[0].cityLng}`;
+  $.ajax({
+    url: timeZoneQueryURL,
+    method: "GET"
+  }).then(function timeSearch(timeResult) {
+    var timeInfoFull = timeResult.formatted;
+    var timeInfoArray = timeInfoFull.split(" ");
+    var timeArray = timeInfoArray[1].split(":");
+    cityInfoArray[0].cityTime = `${timeArray[0]}:${timeArray[1]}`;
+  });
+  for (var i = 1; i < cityInfoArray.length; i++) {
+    cityNumber++;
+    var startTimeArray = cityInfoArray[0].cityTime.split(":");
+    var hrAdjust = +(startTimeArray[0]) + +(offsetArray[i-1]);
+    if (hrAdjust > 24) {
+      hrAdjust = hrAdjust - 24
+    }
+    cityInfoArray[i].cityTime = `${hrAdjust}:${startTimeArray[1]}`;
+    if(cityNumber === majorCitiesArray.length-1) {
+          console.log(cityInfoArray)
+          populateCityInfo();
+        };
+      };
+  }
 
 
+getCityInfo()
+
+function populateCityInfo(){
+for (var i = 0; i < majorCitiesArray.length; i++) {
+  $(`#city${i+1}`).html(`
+  <p>${majorCitiesArray[i]}</p>
+  <p>Time: <b>${cityInfoArray[i].cityTime}</b></p>`);
+}}
+>>>>>>> 9c1f822d7fcc36c5ce3a7850c4c40183b51df6b6
