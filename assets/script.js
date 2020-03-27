@@ -191,9 +191,6 @@ function getCityInfo() {
   })
 }
 
-<<<<<<< HEAD
-
-=======
 function updateCityInfo(){
   cityNumber = 0
   var offsetArray = [8,11,3,17]
@@ -231,4 +228,3 @@ for (var i = 0; i < majorCitiesArray.length; i++) {
   <p>${majorCitiesArray[i]}</p>
   <p>Time: <b>${cityInfoArray[i].cityTime}</b></p>`);
 }}
->>>>>>> 9c1f822d7fcc36c5ce3a7850c4c40183b51df6b6
