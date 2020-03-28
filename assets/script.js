@@ -1,12 +1,4 @@
-// first we need to get the user's location using their browser input
-//then the globe goes to that user's position based on latitude and longitude
-//then we need to get the time for that location and display it
-//then we need to pull up an image based on the location
-//then we have a few cities listed on the bottom where if they click them the
-//city pops up in a marker and the globe goes to it.
-
-//initializing the globe
-
+// initializing the globe
 function initialize() {
   var options = { atmosphere: false, center: [37.540726, -77.43605], zoom: 5 };
   var earth = new WE.map("earth_div", options);
@@ -31,7 +23,7 @@ function initialize() {
     earth.panTo(coords);
   }
 
-  //adding markers to the globe, just need to add the markers from a variable from the search
+  //hardcoded markers with pinned city coords to limit API calls
 
   var markerSydney = WE.marker([-33.865143, 151.2]).addTo(earth);
   markerSydney
@@ -69,7 +61,7 @@ function initialize() {
       closeButton: true
     })
     .openPopup();
-
+// event listener embedded in init funciton to run API call for GPS coords for input
   $("#input-button").on("click", function() {
       var geoCodeAPIkey = "356c83d937c04b978709b023ccb3530f";
       var timeZoneAPIkey = "3XNBGBH1XHV0";
@@ -88,14 +80,13 @@ function initialize() {
         }
         else{
         var cityName = response.results[0].components.city;}
-    //need to add flyTo function
-
+// creates new marker on globe at location of user city
   var searchMarker = WE.marker([currentLat, currentLng]).addTo(earth);
   searchMarker.bindPopup(`<span style='color:black'>You typed in: ${cityName}</span>`, {
     maxWidth: 120,
     closeButton: false
   }).openPopup();
-  // panTo([currentLat, currentLng]);
+  // flyTo() orients globe to show newly added marker
   function flyTo() {
     earth.fitBounds([[currentLat, currentLng - 50], [currentLat, currentLng + 50]]);
     earth.panInsideBounds([[currentLat, currentLng  - 50], [currentLat, currentLng + 50]],
@@ -110,14 +101,15 @@ function initialize() {
 }
 
 initialize();
+// API keys for calling at various places
 var geoCodeAPIkey = "356c83d937c04b978709b023ccb3530f";
 var timeZoneAPIkey = "3XNBGBH1XHV0";
 
+// handling for user input
 $("#input-button").on("click", function () {
-
   var locationInput = $("#locationInput").val();
   var geoCodequeryURL = `https://api.opencagedata.com/geocode/v1/json?q=${locationInput}&key=${geoCodeAPIkey}`;
-
+  // first API call takes user input of city and returns GPS coordinates for use in second API
   $.ajax({
     url: geoCodequeryURL,
     method: "GET"
@@ -127,11 +119,11 @@ $("#input-button").on("click", function () {
     var cityName = response.results[0].components.city;
     var country = response.results[0].components.country;
     var timeZoneQueryURL = `https://api.timezonedb.com/v2.1/get-time-zone?key=${timeZoneAPIkey}&format=json&by=position&lat=${currentLat}&lng=${currentLng}`;
+    // second API call takes GPS lat and long and returns time info and pushes to HTML
     $.ajax({
       url: timeZoneQueryURL,
       method: "GET"
     }).then(function timeZoneSearch(timeResult) {
-      console.log(timeResult);
       var timeZone = timeResult.zoneName;
       var timeInfoFull = timeResult.formatted;
       var timeInfoArray = timeInfoFull.split(" ");
@@ -151,7 +143,7 @@ $("#input-button").on("click", function () {
     updateCityInfo()
   }, 1000);
 });
-
+// pinned city info - Array holds objects that are created by getCityInfo()
 var cityInfoArray = [];
 var majorCitiesArray = [
   "London, United Kingdom",
@@ -160,6 +152,9 @@ var majorCitiesArray = [
   "Moscow, Russia",
   "Los Angeles, CA, United States of America"
 ];
+
+// runs from load to call for information about pinned cities
+// setTimeout() to get around API timeout issue
 function getCityInfo() {
   var cityNumber = 0;
   majorCitiesArray.forEach(function(city, index) {
@@ -188,14 +183,14 @@ function getCityInfo() {
         cityInfoArray.push(cityInfoObject);
 
         if (cityNumber === majorCitiesArray.length){
-        console.log(cityInfoArray)
         populateCityInfo();
         }
       });
     }, 1000 * index);
   })
 }
-
+// called whenever user submits new input to call new time info for pinned cities
+// hard codes time difference between cities to limit API calls
 function updateCityInfo(){
   cityNumber = 0
   var offsetArray = [8,11,3,17]
@@ -218,7 +213,6 @@ function updateCityInfo(){
     }
     cityInfoArray[i].cityTime = `${hrAdjust}:${startTimeArray[1]}`;
     if(cityNumber === majorCitiesArray.length-1) {
-          console.log(cityInfoArray)
           populateCityInfo();
         };
       };
@@ -226,23 +220,25 @@ function updateCityInfo(){
 
 
 getCityInfo()
-
+// function to populate time info for pinned cities
 function populateCityInfo(){
 for (var i = 0; i < majorCitiesArray.length; i++) {
   var timeToPopulate = cityInfoArray[i].cityTime
+  // ----------------error resolution for LAX time not populating---------------------------
   if (timeToPopulate === undefined) {
     timeToPopulate = cityInfoArray[i].cityTime;
   $(`#city${i + 1}`).html(`
   <p>${majorCitiesArray[i]}</p>
-  <p>Time: <b>${timeToPopulate}</b></p>`);
+  <p>Time: <b>big oof</b></p>`);
   }
+  // ---------------------------------------------------------------------------------------
   else{
   $(`#city${i+1}`).html(`
   <p>${majorCitiesArray[i]}</p>
   <p>Time: <b>${timeToPopulate}</b></p>`);
   }
 }}
-
+// populates html from page load
 function populateCityInfoStart() {
   for (var i = 0; i < majorCitiesArray.length; i++) {
     $(`#city${i + 1}`).html(`
@@ -251,8 +247,7 @@ function populateCityInfoStart() {
   }
 }
 populateCityInfoStart()
-
-
+// prevent enter key from reloading page from input box
 $(document).ready(function() {
   $(window).keydown(function(event) {
     if (event.keyCode == 13) {
