@@ -1,47 +1,24 @@
 # FirstBootcampProject
 
-We built a simple webpage that connects to 
+As members of a global community, we often deal with people who live in different time zones. 
+This app was created to help users connect with others around the globe.
+We used 3 APIs;
+  WebGL Earth JavaScript API
+  TimeZone DB API
+  Opencage Geocoding API
 
+We used WebGl Earth to add markers to a globe, extracting longitude and latitude coordinates of the searched locations.
+We then used Opencage API to acquire the timezones for those coordinates.
+Finally we used the TimeZone API to pull up more detailed time information.
 
+# Use/Instructions
 
+This app creates 5 pins on major cities upon startup. The City Name, Country and time are displayed.
 
-elevator pitch; 1 minute description
-concept; write a user story and motivation for development
-process- tech used. how were roles assigned and broken down?
-    list challenges and successes
-demo the app
-directions for future development
-links to deployed app and github repo
-
-
-
-cities displayed;
- 
     london
-    LA
-    beijing
-    moscow
-    sidney
+    Los Angeles
+    Beijing
+    Moscow 
+    Sidney
     
-
-Things Geordin thinks should be implemented
-    1. zoom out a bit upon pulling up a city. The globe spins so the city leaves the page too soon
-        alternative is to reduce or stop globe spin, but I like that the globe spins, it just looks better when zoomed out
-    2. ???
-    3. Profit!
-    4. we will talk about the presentation we need to give on thursday. Take care of yourselves.
-    
-
-
-    ~~~~~~~~~~ Presentation ~~~~~~~~~
-    All must talk!
-        introduce members
-        BIGGEST PART IS Demo-ing the project.
-            keep it under ten but aim for over five
-        what apis used
-        what technology used
-
-        dmitri suggest
-        if we had more time what would we do/have done?
-            fun facts for different countries.
-                might have brought in another API, but we have not identifies which one yet...
+The user can search for and add markers to additional locations, pulling up information on time, date, country, time zone and coordinates. 
