@@ -166,6 +166,7 @@ function getCityInfo() {
     var geoCodeAPIkey = "700f8122007345be85cf878d02de94cd";
     var geoCodequeryURL = `https://api.opencagedata.com/geocode/v1/json?q=${city}&key=${geoCodeAPIkey}`;
     setTimeout(function() {
+      cityNumber++;
       $.ajax({
         url: geoCodequeryURL,
         method: "GET"
@@ -185,7 +186,7 @@ function getCityInfo() {
           cityInfoObject.cityTime = `${timeArray[0]}:${timeArray[1]}`;
         });
         cityInfoArray.push(cityInfoObject);
-        cityNumber++;
+
         if (cityNumber === majorCitiesArray.length){
         console.log(cityInfoArray)
         populateCityInfo();
@@ -228,9 +229,18 @@ getCityInfo()
 
 function populateCityInfo(){
 for (var i = 0; i < majorCitiesArray.length; i++) {
+  var timeToPopulate = cityInfoArray[i].cityTime
+  if (timeToPopulate === undefined) {
+    timeToPopulate = cityInfoArray[i].cityTime;
+  $(`#city${i + 1}`).html(`
+  <p>${majorCitiesArray[i]}</p>
+  <p>Time: <b>${timeToPopulate}</b></p>`);
+  }
+  else{
   $(`#city${i+1}`).html(`
   <p>${majorCitiesArray[i]}</p>
-  <p>Time: <b>${cityInfoArray[i].cityTime}</b></p>`);
+  <p>Time: <b>${timeToPopulate}</b></p>`);
+  }
 }}
 
 function populateCityInfoStart() {
@@ -241,3 +251,14 @@ function populateCityInfoStart() {
   }
 }
 populateCityInfoStart()
+
+
+$(document).ready(function() {
+  $(window).keydown(function(event) {
+    if (event.keyCode == 13) {
+      event.preventDefault();
+      return false;
+    }
+  });
+});
+
