@@ -1,4 +1,4 @@
-# FirstBootcampProject
+# World City Viewer
 https://gormthewyrm.github.io/FirstBootcampProject/  
 
 As members of a global community, we often deal with people who live in different time zones. 
